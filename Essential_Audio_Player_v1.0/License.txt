@@ -2,7 +2,7 @@
 Essential Audio Player
 v1.0
 
-Legal Notes:
+License:
 
 The Essential Audio Player is free for everyone to use, copy, share and modify, under the following conditions:
 The code or any result of its modification remains free for everyone and must not be commercialized in any way.
