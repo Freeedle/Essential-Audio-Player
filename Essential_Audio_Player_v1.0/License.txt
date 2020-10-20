@@ -1,4 +1,4 @@
-﻿
+
 Essential Audio Player
 v1.0
 
