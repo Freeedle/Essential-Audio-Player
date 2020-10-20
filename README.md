@@ -2,7 +2,7 @@
 
 <strong>Essential Audio Player JS</strong> is a simple, clean, reduced-to-the-essential JavaScript / HTML5 / CSS web audio player. No unnecessary controls, just a button and a track (which is optional).
 
-Pure JavaScript, no framework dependence.<br />
+Pure JavaScript, no framework dependency.<br />
 Pure HTML5, based on the &lt;audio&gt; tag.<br />
 Super easy to embed.<br />
 CSS customizable.<br />
