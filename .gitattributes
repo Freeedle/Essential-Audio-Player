@@ -1,4 +1,4 @@
-*.txt linguist-vendored=true
-*.htm linguist-vendored=true
-*.css linguist-vendored=true
-*.js linguist-vendored=false
+*.txt inguist-detectable=false
+*.htm inguist-detectable=false
+*.css inguist-detectable=false
+*.js inguist-detectable=true
