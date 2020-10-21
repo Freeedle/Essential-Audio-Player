@@ -1,5 +1,4 @@
+screenshots/* linguist-vendored
 Essential_Audio_Player_v1.0/*.htm linguist-vendored
 Essential_Audio_Player_v1.0/*.css linguist-vendored
 Essential_Audio_Player_v1.0/*.js linguist-vendored=false
-screenshots/* linguist-vendored=false
-*.js linguist-detectable=true
