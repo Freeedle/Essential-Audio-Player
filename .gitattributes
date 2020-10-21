@@ -1,4 +1,3 @@
-*.txt inguist-detectable=false
-*.htm inguist-detectable=false
-*.css inguist-detectable=false
+Essential_Audio_Player_v1.0/*.htm linguist-vendored
+Essential_Audio_Player_v1.0/*.css linguist-vendored
 *.js inguist-detectable=true
