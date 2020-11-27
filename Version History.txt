@@ -5,11 +5,10 @@ Version History
 v1.0.1
 released Nov 27, 2020
 - JavaScript: increased button refresh frequency for smoother movement
-- CSS: fixed button SVG encoding error (quotes)
+- CSS: improved button SVG encoding (quotes)
 
 v1.0
 released July 24, 2020
 
 Essential Audio Player Website:
 https://essential.audio
-
