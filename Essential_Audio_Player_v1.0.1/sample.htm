@@ -20,7 +20,6 @@ body {
 }
 #top {
 	position: absolute;
-	top: 75px;
 	left: 0px;
 	width: 100%;
 }
@@ -31,6 +30,7 @@ h1 {
 	font-weight: bold;
 	line-height: 42px;
 	color: rgba(0,0,0,0.9);
+	padding: 0px 30px 0px 30px;
 	margin: 0px 0px 0px 0px;
 }
 h1 span {
@@ -51,12 +51,9 @@ h1 span {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	margin: -12px 0px 0px -30%;
-	width: 60%;
 }
 #bottom {
 	position: absolute;
-	bottom: 75px;
 	left: 0px;
 	width: 100%;
 	text-align: center;
@@ -75,11 +72,38 @@ h1 span {
 	color: #FFF;
 	background-color: rgba(0,0,0,0.5);
 	text-decoration: none;
-	padding: 1px 5px 2px 5px;
-	margin: -1px -2px -2px -2px;
+	padding: 2px 5px 2px 5px;
+	margin: -2px -2px -2px -2px;
 	border-radius: 3px;
 	border-bottom: none;
 }
+@media screen and (max-width: 800px) {
+	#top {
+		top: 7vh;
+	}
+	#player {
+		margin-top: -2px;
+		margin-left: -40vw;
+		width: 80vw;
+	}
+	#bottom {
+		bottom: 7vh;
+	}
+}
+@media screen and (min-width: 801px) {
+	#top {
+		top: 12vh;
+	}
+	#player {
+		margin-top: -12px;
+		margin-left: -30vw;
+		width: 60vw;
+	}
+	#bottom {
+		bottom: 12vh;
+	}
+}
+
 -->
 </style>
 <title>Essential Audio Player JS</title>
