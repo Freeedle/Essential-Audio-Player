@@ -9,7 +9,7 @@ CSS customizable.<br />
 Fully mobile. Fully responsive.<br />
 Free for everyone.
 
-<strong>View demo and full documentation:</strong><br />
+<strong>View demo and documentation:</strong><br />
 https://essential.audio
 
 <br />
