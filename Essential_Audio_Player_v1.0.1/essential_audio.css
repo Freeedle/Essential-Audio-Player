@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/********** Essential Audio Player CSS **********/
+/********** Essential Audio Player CSS 1.0.2 **********/
 
 
 
@@ -24,7 +24,7 @@ div.essential_audio > div:nth-child(1) div {
 	width: 28px;
 	height: 28px;
 	margin-top: -13px;
-	border-radius: 14px;
+	border-radius: 50%;
 	background-color: #000;
 }
 div.essential_audio > div:nth-child(1) div:after {
