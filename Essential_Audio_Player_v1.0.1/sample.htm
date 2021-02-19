@@ -6,6 +6,7 @@
 <meta name="language" content="EN" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="cache-control" content="no-cache" />
+<link rel="shortcut icon" type="image/svg" href="https://essential.audio/pics/favicon.svg" />
 <link rel="stylesheet" href="https://essential.audio/css/_fonts.css" />
 <link rel="stylesheet" href="essential_audio.css" />
 <script src="essential_audio.js"></script>
@@ -47,10 +48,13 @@ h1 span {
 	line-height: 16px;
 	color: rgba(0,0,0,0.5);
 }
-#player {
+#player_box {
 	position: absolute;
 	top: 50%;
 	left: 50%;
+}
+#player_box > div + div {
+	margin-top: 100px;
 }
 #bottom {
 	position: absolute;
@@ -77,30 +81,46 @@ h1 span {
 	border-radius: 3px;
 	border-bottom: none;
 }
-@media screen and (max-width: 800px) {
+@media (max-width: 800px) {
 	#top {
 		top: 7vh;
 	}
-	#player {
-		margin-top: -2px;
+	#player_box {
+		margin-top: -75px;
 		margin-left: -40vw;
 		width: 80vw;
 	}
 	#bottom {
 		bottom: 7vh;
 	}
+	@media (max-height: 520px) {
+		#player_box {
+			margin-top: -40px!important;
+		}
+		#player_box > div + div {
+			margin-top: 65px!important;
+		}
+	}
 }
-@media screen and (min-width: 801px) {
+@media (min-width: 801px) {
 	#top {
 		top: 12vh;
 	}
-	#player {
-		margin-top: -12px;
+	#player_box {
+		margin-top: -100px;
 		margin-left: -30vw;
 		width: 60vw;
 	}
 	#bottom {
 		bottom: 12vh;
+	}
+	@media (max-height: 520px) {
+		#player_box {
+			margin-top: -65px!important;
+		}
+		#player_box > div + div {
+			margin-top: 65px!important;
+		}
 	}
 }
 
@@ -115,8 +135,16 @@ h1 span {
 	<h1>Essential Audio&nbsp;Player&nbsp;<span>JS</span></h1>
 	<div id="version">Version 1.0.1</div>
 </div>
-<div id="player">
-	<div class="essential_audio" data-url="https://essential.audio/audio/Song.mp3"><span class="no_js">Please activate JavaScript for the audio player.</span></div>
+<div id="player_box">
+	<div>
+		<div class="essential_audio" data-url="https://essential.audio/audio/Song.mp3"><span class="no_js">Please activate JavaScript for the audio player.</span></div>
+	</div>
+	<div>
+		<div class="essential_audio" data-url="https://essential.audio/audio/Song.mp3"><span class="no_js">Please activate JavaScript for the audio player.</span></div>
+	</div>
+	<div>
+		<div class="essential_audio" data-url="https://essential.audio/audio/Song.mp3"><span class="no_js">Please activate JavaScript for the audio player.</span></div>
+	</div>
 </div>
 <div id="bottom">Find the documentation on:<br>
 	<a href="https://essential.audio/" target="_blank">https://essential.audio</a></div>
