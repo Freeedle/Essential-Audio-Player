@@ -1,0 +1,182 @@
+@charset "UTF-8";
+
+/********** Essential Audio Player 1.0.3 CSS **********/
+
+
+
+/****************************************/
+/*                                      */
+/*         Section 1: The Looks         */
+/*                                      */
+/****************************************/
+
+
+/* 1. The Main Container */
+div.essential_audio {
+	position: relative;
+	z-index: 0;
+	width: 100%;
+}
+
+
+/* 2. The Player Button – General */
+div.essential_audio > div:nth-child(1) div {
+	width: 28px;
+	height: 28px;
+	margin-top: -13px;
+	border-radius: 14px;
+	background-color: #000;
+}
+div.essential_audio > div:nth-child(1) div:after {
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: 24px;
+	height: 24px;
+}
+/* Set here how much the button exceeds the horizontal track limits: */
+/* This must not be deleted! (but can be changed, of course) */
+:root {
+	--button-protrusion: 4px;
+}
+
+/* 2.a) The Player Button – Off */
+div.essential_audio > div:nth-child(1) div.off:after {
+	content: url("data:image/svg+xml; utf8, <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><polygon fill='%23FFF' points='10,6.9 10,23.1 24,15' /></svg>");
+}
+
+/* 2.b) The Player Button – Loading */
+div.essential_audio > div:nth-child(1) div.load:after {
+	content: url("data:image/svg+xml; utf8, <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><circle opacity='0.64' fill='%23FFFFFF' cx='6.5' cy='18.5' r='2'/><circle opacity='0.76' fill='%23FFFFFF' cx='6.5' cy='11.5' r='2'/><circle opacity='0.88' fill='%23FFFFFF' cx='11.5' cy='6.5' r='2'/><circle fill='%23FFFFFF' cx='18.5' cy='6.5' r='2'/><circle opacity='0.16' fill='%23FFFFFF' cx='23.5' cy='11.5' r='2'/><circle opacity='0.28' fill='%23FFFFFF' cx='23.5' cy='18.5' r='2'/><circle opacity='0.4' fill='%23FFFFFF' cx='18.5' cy='23.4' r='2'/><circle opacity='0.52' fill='%23FFFFFF' cx='11.5' cy='23.4' r='2'/></svg>");
+	animation: audio_load_rotate 1s infinite linear;
+}
+@keyframes audio_load_rotate {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
+}
+
+/* 2.c) The Player Button – Playing */
+div.essential_audio > div:nth-child(1) div.play {
+	background-color: #000!important;
+}
+div.essential_audio > div:nth-child(1) div.play:after {
+	content: url("data:image/svg+xml; utf8, <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><rect fill='%23FFF' x='17' y='8' width='3' height='14' /><rect fill='%23FFF' x='10' y='8' width='3' height='14' /></svg>");
+}
+
+/* 2.d) The Player Button – Dragging */
+div.essential_audio > div:nth-child(1) div.drag {
+	transition: left 0s!important;
+	/*
+	cursor: grab!important;
+	*/
+}
+
+/* 2.e) The Player Button – Error */
+div.essential_audio > div:nth-child(1) div.error {
+	background-color: rgba(0,0,0,0.35)!important;
+}
+div.essential_audio > div:nth-child(1) div.error:after {
+	content: url("data:image/svg+xml; utf8, <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path fill='%23FFF' d='M13.9,18.6c0-0.3,0-0.5,0-0.9c0-1.6,0.6-2.9,2.1-3.9l1.1-0.8c0.9-0.6,1.3-1.5,1.3-2.4c0-1.5-1-2.8-3-2.8c-2.2,0-3.1,1.6-3.1,3.2c0,0.2,0,0.4,0,0.5L10,11.9c-0.1-0.3-0.1-0.8-0.1-1.2c0-2.3,1.7-5.1,5.5-5.1c3.5,0,5.5,2.5,5.5,5c0,2-1.1,3.4-2.5,4.3l-1.2,0.8c-0.8,0.5-1.1,1.4-1.1,2.4c0,0.1,0,0.2,0,0.5H13.9z'/><path fill='%23FFF' d='M15,20.8c1,0,1.8,0.8,1.8,1.8S16,24.4,15,24.4c-1,0-1.8-0.8-1.8-1.8S14,20.8,15,20.8z'/></svg>");
+}
+
+
+/* 3. The Track */
+div.essential_audio > div:nth-child(2) {
+	height: 2px;
+}
+div.essential_audio > div:nth-child(2):after {
+	content: "";
+	position: absolute;
+	z-index: 0;
+	background-color: #000;
+	opacity: 0.3;
+	mix-blend-mode: multiply;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+}
+
+
+/* 4. The Loading Progress Bar */
+div.essential_audio > div:nth-child(2) div {
+	background-color: #666;
+	mix-blend-mode: multiply;
+}
+
+
+/* 5. The Klick & Drag Sensor */
+div.essential_audio > div:nth-child(3) {
+	height: 12px;
+	margin-top: -5px;
+}
+
+
+
+
+/****************************************/
+/*                                      */
+/*        Section 2: Core Values        */
+/*                                      */
+/****************************************/
+
+
+/* 1. The Main Container + General Settings */
+div.essential_audio,
+div.essential_audio * {
+	user-select: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-overflow-scrolling: auto;
+}
+div.essential_audio *:focus {
+	outline: none;
+}
+
+
+/* 2. The Player Button */
+div.essential_audio > div:nth-child(1) div {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	cursor: pointer;
+}
+
+/* 2.a) Container for Player Button */
+div.essential_audio > div:nth-child(1) {
+	position: absolute;
+	z-index: 3;
+	height: 0px;
+	top: 0px;
+	left: calc(var(--button-protrusion) * -1);
+	width: calc(100% + (2 * var(--button-protrusion)));
+}
+
+
+/* 3. The Track */
+div.essential_audio > div:nth-child(2) {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+}
+
+
+/* 4. The Loading Progress Bar */
+div.essential_audio > div:nth-child(2) div {
+	position: absolute;
+	z-index: 1;
+	width: 0%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	transition: width 0.5s;
+}
+
+
+/* 5. The Klick & Drag Sensor */
+div.essential_audio > div:nth-child(3) {
+	position: absolute;
+	z-index: 2;
+	width: 100%;
+	top: 0px;
+	left: 0px;
+}
