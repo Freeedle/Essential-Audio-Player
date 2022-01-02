@@ -7,7 +7,7 @@ Strict HTML5, based on the &lt;audio&gt; tag.<br />
 Easy to embed.<br />
 CSS customizable.<br />
 Fully mobile. Fully responsive.<br />
-Free for everyone.
+Free.
 
 <strong>View demo and full documentation:</strong><br />
 https://essential.audio
