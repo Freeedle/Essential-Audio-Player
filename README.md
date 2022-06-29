@@ -14,4 +14,4 @@ Free.
 https://essential.audio
 
 <br />
-<a href="https://essential.audio" target="_blank"><img src="https://github.com/Freeedle/Essential-Audio-Player/blob/main/screenshots/Essential_Audio_Player_Screenshot_1_small.jpg" alt="Essential Audio Player is a simple, clean and minimal custom JavaScript / HTML5 / CSS web audio player."></a>
+<a href="https://essential.audio" target="_blank"><img src="https://github.com/Freeedle/Essential-Audio-Player/blob/main/screenshots/Essential_Audio_Player_Screenshot_1_small.jpg" alt="The Essential Audio Player is a simple, clean and minimal custom JavaScript / HTML5 / CSS web audio player."></a>
