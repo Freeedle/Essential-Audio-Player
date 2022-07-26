@@ -11,7 +11,7 @@ Fully mobile. Fully responsive.<br />
 Free.
 
 <strong>View demo and documentation:</strong><br />
-https://essential.audio
+https://essential-audio-player.net
 
 <br />
 <a href="https://essential.audio" target="_blank"><img src="https://github.com/Freeedle/Essential-Audio-Player/blob/main/screenshots/Essential_Audio_Player_Screenshot_1_small.jpg" alt="The Essential Audio Player JS is a simple, clean, minimal custom JavaScript / HTML5 / CSS web audio player."></a>
