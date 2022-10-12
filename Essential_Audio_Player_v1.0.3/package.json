@@ -1,0 +1,25 @@
+{
+  "name": "essential_audio_player",
+  "version": "1.0.3",
+  "description": "Essential Audio Player JS is a simple, clean and minimal JavaScript / HTML5 / CSS web audio player.",
+  "main": "essential_audio.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Freeedle/Essential-Audio-Player.git"
+  },
+  "keywords": [
+    "audio",
+    "player",
+    "javascript",
+    "html5"
+  ],
+  "author": "Freeedle",
+  "license": "SEE LICENSE IN License.txt",
+  "bugs": {
+    "url": "https://github.com/Freeedle/Essential-Audio-Player/issues"
+  },
+  "homepage": "https://essential-audio-player.net"
+}
