@@ -4,7 +4,7 @@
   "description": "Essential Audio Player JS is a simple, clean and minimal JavaScript / HTML5 / CSS web audio player.",
   "main": "essential_audio.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"There’s nothing to test here.\" && exit 1"
   },
   "repository": {
     "type": "git",
