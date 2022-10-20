@@ -13,7 +13,7 @@ Free.
 <strong>View demo and documentation:</strong><br />
 https://essential-audio-player.net
 
-<strong>npm install:</strong><br />
+<strong>npm install:</strong>
 <div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="npm install
 npm run example"><pre class="notranslate"><code>npm i essential-audio-player --save</code></pre></div>
 
