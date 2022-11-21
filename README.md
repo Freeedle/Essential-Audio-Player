@@ -17,4 +17,4 @@ https://essential-audio-player.net
 <div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="npm i essential-audio-player --save"><pre class="notranslate"><code>npm i essential-audio-player --save</code></pre></div>
 
 <br />
-<a href="https://essential-audio-player.net" target="_blank"><img src="https://github.com/Freeedle/Essential-Audio-Player/blob/main/screenshots/Essential_Audio_Player_Screenshot_1_small.jpg" alt="Essential Audio Player JS is a simple, clean, minimal custom JavaScript / HTML5 / CSS web audio player."></a>
+<a href="https://essential-audio-player.net" target="_blank"><img src="https://github.com/Freeedle/Essential-Audio-Player/blob/main/screenshots/Essential_Audio_Player_Screenshot_1_small.jpg" alt="The Essential Audio Player JS is a simple, clean, minimal custom JavaScript / HTML5 / CSS web audio player."></a>
