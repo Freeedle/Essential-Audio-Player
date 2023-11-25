@@ -29,10 +29,10 @@ div.essential_audio > div:nth-child(1) div {
 }
 div.essential_audio > div:nth-child(1) div:after {
 	position: absolute;
-	top: 2px;
-	left: 2px;
-	width: 24px;
-	height: 24px;
+	top: 7%;
+	left: 7%;
+	width: 86%;
+	height: 86%;
 }
 /* Set here how much the button exceeds the horizontal track limits: */
 /* This must not be deleted! (but can be changed, of course) */
