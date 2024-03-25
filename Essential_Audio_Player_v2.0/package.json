@@ -1,6 +1,6 @@
 {
   "name": "essential-audio-player",
-  "version": "2.0",
+  "version": "2.0.0",
   "description": "Essential Audio Player JS is a simple, clean and minimal JavaScript / HTML5 / CSS web audio player.",
   "main": "essential_audio.js",
   "scripts": {
