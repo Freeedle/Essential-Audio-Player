@@ -1,7 +1,6 @@
 // Essential Audio Player v2.1
 "use strict";
 var Essential_Audio = (() => {
-  var n = null;
   var A = {};
   var b = [];
   var c = false;
@@ -53,8 +52,8 @@ var Essential_Audio = (() => {
         ie = true;
       },
     });
-    document.addEventListener("ig", n, ig);
-    document.removeEventListener("ig", n, ig);
+    document.addEventListener("ig", null, ig);
+    document.removeEventListener("ig", null, ig);
   } catch (e) {}
   function B() {
     var ia = document.querySelectorAll(pa);
@@ -431,11 +430,11 @@ var Essential_Audio = (() => {
       }
     };
     a.onloadedmetadata = () => {
-      a.onloadedmetadata = n;
+      a.onloadedmetadata = null;
       J(a);
     };
     a.onprogress = () => {
-      a.onprogress = n;
+      a.onprogress = null;
       a.ta = setInterval(U, 500, a);
       a.zo = true;
     };
