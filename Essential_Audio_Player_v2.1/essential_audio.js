@@ -1,7 +1,7 @@
 // Essential Audio Player v2.1
 "use strict";
 var Essential_Audio = (() => {
-  var A = {};
+  var audioElements = {};
   var b = [];
   var c = false;
   var d = false;
@@ -57,8 +57,8 @@ var Essential_Audio = (() => {
         ic = "EAP_" + (ib + 1);
         vo.setAttribute("id", ic);
       }
-      A[ic] = document.createElement("audio");
-      var a = A[ic];
+      audioElements[ic] = document.createElement("audio");
+      var a = audioElements[ic];
       a.id = ic;
       a.za = vo.querySelector("div:nth-child(1)").querySelector("div");
       a.zb = a.za.offsetWidth;
@@ -550,7 +550,7 @@ var Essential_Audio = (() => {
         vo = b[0];
       }
     }
-    var a = A[vo];
+    var a = audioElements[vo];
     if (!a.zl) {
       C(a);
     }
@@ -604,7 +604,7 @@ var Essential_Audio = (() => {
         vo = b[0];
       }
     }
-    var a = A[vo];
+    var a = audioElements[vo];
     T(a);
   }
   function U(a) {
@@ -641,7 +641,7 @@ var Essential_Audio = (() => {
     var vj = document.querySelectorAll("div.essential_audio");
     vj.forEach((vo) => {
       var vk = vo.getAttribute("id");
-      var a = A[vk];
+      var a = audioElements[vk];
       if (a.zo) {
         clearInterval(a.ta);
       }
@@ -666,7 +666,7 @@ var Essential_Audio = (() => {
   window.addEventListener("resize", W);
   return {
     init: init,
-    Audio: A,
+    Audio: audioElements,
     Play: N,
     Stop: R,
     Reset: S,
@@ -694,7 +694,7 @@ var Essential_Audio = (() => {
   function init() {
     d = false;
     c = false;
-    A = {};
+    audioElements = {};
     setupPlayers();
   }
 })();
