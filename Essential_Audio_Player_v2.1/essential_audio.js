@@ -14,14 +14,14 @@ var Essential_Audio = (() => {
   var m = false;
   var o;
   var p;
-  var pl = (a) => {
-    return a.duration;
+  var duration = (audio) => {
+    return audio.duration;
   };
-  var pm = (a) => {
-    return a.currentTime;
+  var currentTime = (audio) => {
+    return audio.currentTime;
   };
-  var pn = (a) => {
-    return a.buffered;
+  var buffered = (audio) => {
+    return audio.buffered;
   };
   var po = (e) => {
     if (e.changedTouches) {
@@ -218,7 +218,7 @@ var Essential_Audio = (() => {
         a.za.style.left = a.zf + "px";
         if (a.zp && a.zl) {
           V(a);
-          if (a.paused && pm(a) != pl(a)) {
+          if (a.paused && currentTime(a) != duration(a)) {
             a.play();
           }
         }
@@ -245,11 +245,11 @@ var Essential_Audio = (() => {
         window.removeEventListener("touchend", Bd);
       }
       if (m) {
-        if (pl(a) && a.zd > 0) {
+        if (duration(a) && a.zd > 0) {
           if (!a.zp || !a.zl) {
             V(a);
           }
-          if (a.zl && a.paused && pm(a) != pl(a)) {
+          if (a.zl && a.paused && currentTime(a) != duration(a)) {
             a.play();
           }
         }
@@ -293,7 +293,7 @@ var Essential_Audio = (() => {
         a.za.style.left = a.zf + "px";
         if (a.zp && a.zl) {
           V(a);
-          if (a.paused && pm(a) != pl(a)) {
+          if (a.paused && currentTime(a) != duration(a)) {
             a.play();
           }
         }
@@ -319,11 +319,11 @@ var Essential_Audio = (() => {
           window.removeEventListener("touchend", Bg);
         }
         if (m) {
-          if (pl(a)) {
+          if (duration(a)) {
             if (!a.zp || a.zl) {
               V(a);
             }
-            if (a.zl && a.paused && pm(a) != pl(a)) {
+            if (a.zl && a.paused && currentTime(a) != duration(a)) {
               a.play();
             }
           }
@@ -333,7 +333,7 @@ var Essential_Audio = (() => {
           p = j - a.za.parentNode.getBoundingClientRect().left - i;
           a.zf = Math.min(Math.max(p, 0), a.zd);
           a.za.style.left = a.zf + "px";
-          if (pl(a)) {
+          if (duration(a)) {
             V(a);
             if (a.zl) {
               a.play();
@@ -360,7 +360,7 @@ var Essential_Audio = (() => {
       }
     }
     c = a;
-    if (pl(a)) {
+    if (duration(a)) {
       O(a);
     } else {
       if (!a.zh) {
@@ -504,13 +504,13 @@ var Essential_Audio = (() => {
   function L(a) {
     V(a);
     var vg = 0;
-    for (var i = 0; i < pn(a).length; i++) {
-      if (pn(a).start(pn(a).length - 1 - i) <= pm(a)) {
-        vg = pn(a).end(pn(a).length - 1 - i);
+    for (var i = 0; i < buffered(a).length; i++) {
+      if (buffered(a).start(buffered(a).length - 1 - i) <= currentTime(a)) {
+        vg = buffered(a).end(buffered(a).length - 1 - i);
         break;
       }
     }
-    if (vg >= pm(a)) {
+    if (vg >= currentTime(a)) {
       clearInterval(a.tb);
       M(a);
     }
@@ -527,7 +527,7 @@ var Essential_Audio = (() => {
     }
   }
   function O(a) {
-    if (pm(a) == pl(a)) {
+    if (currentTime(a) == duration(a)) {
       T(a);
     }
     V(a);
@@ -561,7 +561,7 @@ var Essential_Audio = (() => {
   function Q(a) {
     if (!a.zn) {
       P(a);
-      if (pm(a) == pl(a)) {
+      if (currentTime(a) == duration(a)) {
         if (a.loop) {
           T(a);
         } else {
@@ -571,7 +571,7 @@ var Essential_Audio = (() => {
     }
   }
   function P(a) {
-    a.zf = pp((pm(a) * a.zd) / pl(a));
+    a.zf = pp((currentTime(a) * a.zd) / duration(a));
     a.za.style.left = a.zf + "px";
   }
   function R(vm) {
@@ -593,7 +593,7 @@ var Essential_Audio = (() => {
     }
   }
   function T(a) {
-    if (pl(a)) {
+    if (duration(a)) {
       a.currentTime = 0;
     }
     a.zf = 0;
@@ -611,21 +611,21 @@ var Essential_Audio = (() => {
     T(a);
   }
   function U(a) {
-    if (pl(a)) {
+    if (duration(a)) {
       var vh;
       if (a.zd == 0) {
         vh = 0;
       } else {
-        vh = pp((a.zf / a.zd) * pl(a) * 100) / 100;
+        vh = pp((a.zf / a.zd) * duration(a) * 100) / 100;
       }
       var vi = 0;
-      for (var i = 0; i < pn(a).length; i++) {
-        if (pn(a).start(pn(a).length - 1 - i) <= vh) {
-          vi = pn(a).end(pn(a).length - 1 - i);
+      for (var i = 0; i < buffered(a).length; i++) {
+        if (buffered(a).start(buffered(a).length - 1 - i) <= vh) {
+          vi = buffered(a).end(buffered(a).length - 1 - i);
           break;
         }
       }
-      a.zg = pp((vi / pl(a)) * 100);
+      a.zg = pp((vi / duration(a)) * 100);
       a.za.parentNode.parentNode
         .querySelector("div:nth-child(2)")
         .querySelector("div").style.width = a.zg + "%";
@@ -637,7 +637,7 @@ var Essential_Audio = (() => {
   }
   function V(a) {
     if (a.zd > 0) {
-      a.currentTime = (a.zf / a.zd) * pl(a);
+      a.currentTime = (a.zf / a.zd) * duration(a);
     }
   }
   function W() {
@@ -658,7 +658,7 @@ var Essential_Audio = (() => {
         a.za.style.left = a.zf + "px";
       }
       a.zd = vl;
-      if (pl(a) && !a.zl) {
+      if (duration(a) && !a.zl) {
         V(a);
       }
       if (a.zo) {
