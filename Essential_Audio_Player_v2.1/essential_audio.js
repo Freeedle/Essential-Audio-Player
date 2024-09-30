@@ -305,24 +305,24 @@ var Essential_Audio = (() => {
         }
       }
       if (!k) {
-        window.addEventListener("mouseup", Bg);
+        window.addEventListener("mouseup", onMouseUp);
       } else {
-        window.addEventListener("touchend", Bg);
+        window.addEventListener("touchend", onMouseUp);
       }
-      function Bg() {
+      function onMouseUp() {
         clearTimeout(audio.te);
         if (!k) {
           window.removeEventListener("mousemove", Bf);
           window.removeEventListener("mousemove", (e) => {
             po(e);
           });
-          window.removeEventListener("mouseup", Bg);
+          window.removeEventListener("mouseup", onMouseUp);
         } else {
           window.removeEventListener("touchmove", Bf);
           window.removeEventListener("touchmove", (e) => {
             po(e);
           });
-          window.removeEventListener("touchend", Bg);
+          window.removeEventListener("touchend", onMouseUp);
         }
         if (m) {
           if (duration(audio)) {
