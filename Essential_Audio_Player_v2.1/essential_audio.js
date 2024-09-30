@@ -444,7 +444,7 @@ var Essential_Audio = (() => {
     for (var i = 0; i < sources.length; i++) {
       sources[i] = sources[i].trim();
       if (sources[i] != "") {
-        G(audio, sources[i], i + 1);
+        appendSource(audio, sources[i], i + 1);
         audioHasValidSource = true;
       }
     }
@@ -452,7 +452,7 @@ var Essential_Audio = (() => {
       handleLoadFailed(audio);
     }
   }
-  function G(audio, file_url, vc) {
+  function appendSource(audio, file_url, vc) {
     var vd = audio.id + "_" + vc;
     audio.innerHTML +=
       '<source id="' + vd + '" src="' + file_url + '" crossorigin="anonymous">';
