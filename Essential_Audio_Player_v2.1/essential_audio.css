@@ -25,7 +25,11 @@ div.essential_audio > div:nth-child(1) div {
 	height: 28px;
 	margin-top: -13px;
 	border-radius: 50%;
+	border: 1px solid #000;
 	background-color: #000;
+}
+div.essential_audio > div:nth-child(1) div:focus-within {
+	border: 1px solid #fff;
 }
 div.essential_audio > div:nth-child(1) div:after {
 	position: absolute;

@@ -1,2 +1,741 @@
 // Essential Audio Player v2.1
-'use strict';var Essential_Audio=(()=>{var t=true;var f=false;var n=null;var A={};var b=[];var c=f;var d=f;var g=0;var h;var i;var j;var k=f;var l;var m=f;var o;var p;var q=50;var pa='div.essential_audio';var pb='div:nth-child(1)';var pf='mousemove';var pg='touchmove';var ph='mouseup';var pj='touchend';var pl=(a)=>{return a.duration};var pm=(a)=>{return a.currentTime};var pn=(a)=>{return a.buffered};var po=(e)=>{if(e.changedTouches){j=pp(e.changedTouches[0].pageX)}else{j=pp(e.pageX)}};var pp=(x)=>{return Math.round(x)};if(document.readyState!='loading'){B()}else{document.addEventListener('DOMContentLoaded',B)};var ie=f;try{var ig=Object.defineProperty({},'passive',{get:()=>{ie=t}});document.addEventListener('ig',n,ig);document.removeEventListener('ig',n,ig)}catch(e){};function B(){var ia=document.querySelectorAll(pa);ia.forEach((vo,ib)=>{vo.innerHTML='<div><div class="off"><!----></div></div><div><div><!----></div></div><div><!----></div>';var ic;if(vo.hasAttribute('id')){ic=vo.getAttribute('id')}else{ic='EAP_'+(ib+1);vo.setAttribute('id',ic)}A[ic]=document.createElement('audio');var a=A[ic];a.id=ic;a.za=vo.querySelector(pb).querySelector('div');a.zb=a.za.offsetWidth;a.zc=vo.querySelector('div:nth-child(3)');a.zd=vo.querySelector(pb).offsetWidth-a.zb;if(a.zd<0){a.zd=0}a.ze=vo.getAttribute('data-url');a.zf=0;a.zg=0;a.zh=f;a.zis=0;a.zj=f;a.zk=f;a.zl=f;a.zm=f;a.zn=f;a.zo=f;b[ib]=ic;a.crossOrigin='anonymous';a.preload='metadata';if(vo.hasAttribute('data-loop')){a.loop=t}if(vo.hasAttribute('data-scratch')){a.zp=t}else{a.zp=f}if(vo.hasAttribute('data-passive')){a.zq=t}else{a.zq=f}if(vo.hasAttribute('data-autoplay')){if(g<1){g=1;a.autoplay=t;a.preload='auto';c=a;E(a)}}if(vo.hasAttribute('data-preload')){if(!a.autoplay){a.preload='auto';E(a)}}a.za.onmousedown=(e)=>{if(!k){po(e);window.addEventListener(pf,(e)=>{po(e)});Ba(a)}};if(!a.zq){a.za.ontouchstart=(e)=>{e.preventDefault();e.stopPropagation();clearTimeout(l);k=t;po(e);window.addEventListener(pg,(e)=>{po(e)});Ba(a)}}else{a.za.addEventListener('touchstart',(e)=>{e.stopPropagation();clearTimeout(l);k=t;po(e);window.addEventListener(pg,(e)=>{po(e)});Ba(a)},ie ?{passive:t}:f)}a.zc.onmousedown=(e)=>{e.preventDefault();e.stopPropagation();if(!k){po(e);window.addEventListener(pf,(e)=>{po(e)});Bb(a)}};if(!a.zq){a.zc.ontouchstart=(e)=>{e.preventDefault();e.stopPropagation();clearTimeout(l);k=t;po(e);window.addEventListener(pg,(e)=>{po(e)});Bb(a)}}else{a.zc.addEventListener('touchstart',(e)=>{e.stopPropagation();clearTimeout(l);k=t;po(e);window.addEventListener(pg,(e)=>{po(e)});Bb(a)},ie ?{passive:t}:f)}})};function Ba(a){a.zn=t;h=j;i=h-(a.za.getBoundingClientRect().left+window.scrollX);if(!k){window.addEventListener(pf,Bc)}else{a.te=setTimeout(function(){window.addEventListener(pg,Bc);clearTimeout(a.te)},100)}function Bc(){if(h!=j){m=t;if(a.zd>0){a.za.classList.add('drag')}}if(m&&(a.zd>0)){o=j-(a.za.parentNode.getBoundingClientRect().left+window.scrollX)-i;a.zf=Math.min(Math.max(o,0),a.zd);a.za.style.left=a.zf+'px';if(a.zp&&a.zl){V(a);if(a.paused&&(pm(a)!=pl(a))){a.play()}}}};if(!k){window.addEventListener(ph,Bd)}else{window.addEventListener(pj,Bd)}function Bd(){clearTimeout(a.te);if(!k){window.removeEventListener(pf,Bc);window.removeEventListener(pf,(e)=>{po(e)});window.removeEventListener(ph,Bd)}else{window.removeEventListener(pg,Bc);window.removeEventListener(pg,(e)=>{po(e)});window.removeEventListener(pj,Bd)}if(m){if(pl(a)&&(a.zd>0)){if(!a.zp||!a.zl){V(a)}if(a.zl&&a.paused&&(pm(a)!=pl(a))){a.play()}}m=f;a.za.classList.remove('drag')}else{if(c.id&&(c.id==a.id)&&a.zl){P(a)}if(!a.zj){C(a)}}a.zn=f;if(k){l=setTimeout(function(){k=f;clearTimeout(l)},150)}}};function Bb(a){if(a.zd>0){a.zn=t;h=j;i=Math.floor(a.zb/2);if(!k){window.addEventListener(pf,Bf)}else{a.te=setTimeout(function(){window.addEventListener(pg,Bf);clearTimeout(a.te)},100)}function Bf(){m=t;a.za.classList.add('drag');o=j-a.za.parentNode.getBoundingClientRect().left-i;a.zf=Math.min(Math.max(o,0),a.zd);a.za.style.left=a.zf+'px';if(a.zp&&a.zl){V(a);if(a.paused&&(pm(a)!=pl(a))){a.play()}}};if(!k){window.addEventListener(ph,Bg)}else{window.addEventListener(pj,Bg)}function Bg(){clearTimeout(a.te);if(!k){window.removeEventListener(pf,Bf);window.removeEventListener(pf,(e)=>{po(e)});window.removeEventListener(ph,Bg)}else{window.removeEventListener(pg,Bf);window.removeEventListener(pg,(e)=>{po(e)});window.removeEventListener(pj,Bg)}if(m){if(pl(a)){if(!a.zp||a.zl){V(a)}if(a.zl&&a.paused&&(pm(a)!=pl(a))){a.play()}}m=f;a.za.classList.remove('drag')}else{p=j-a.za.parentNode.getBoundingClientRect().left-i;a.zf=Math.min(Math.max(p,0),a.zd);a.za.style.left=a.zf+'px';if(pl(a)){V(a);if(a.zl){a.play()}}}a.zn=f;if(k){l=setTimeout(function(){k=f;clearTimeout(l)},150)}}}};function C(a){if(c){if(a.id==c.id){R();return}else{R()}}c=a;if(pl(a)){O(a)}else{if(!a.zh){E(a)}}};function D(a,vn){a.za.setAttribute('class','');a.za.classList.add(vn)};function E(a){D(a,'load');a.zh=t;a.zk=t;a.onplay=()=>{if(!a.zk){clearTimeout(a.td);D(a,'play')}if(a.id==d.id){c=a;d=f;a.zl=t;if(a.zd>0){a.tc=setInterval(Q,q,a)}}};a.onplaying=()=>{clearTimeout(a.td);D(a,'play')};a.onwaiting=()=>{a.td=setTimeout(()=>{D(a,'load')},50)};a.onpause=()=>{if(!a.zk&&!a.zn&&!a.ended){D(a,'off')}if(a.zl&&!a.zk&&!a.ended){R()}};a.onended=()=>{if(a.zd==0&&!a.loop){R(0)}};a.onseeking=()=>{if(a.id==d.id){P(a)}};a.onseeked=()=>{if(a.id==d.id){P(a)}};a.onloadedmetadata=()=>{a.onloadedmetadata=n;J(a)};a.onprogress=()=>{a.onprogress=n;a.ta=setInterval(U,500,a);a.zo=t};var va=a.ze.split(',');var vb=t;for(var i=0;i<va.length;i++){va[i]=va[i].trim();if(va[i]!=''){G(a,va[i],(i+1));vb=f}}if(vb){H(a)}};function G(a,file_url,vc){var vd=a.id+'_'+vc;a.innerHTML+='<source id="'+vd+'" src="'+file_url+'" crossorigin="anonymous">'};function H(a){a.zh=f;a.zm=f;a.zl=f;a.zj=t;D(a,'error');if(a.id==c.id){c=f}};function J(a){if(a.preload=='auto'){if(/iPad|iPhone|iPod/.test(navigator.userAgent)&&!window.MSStream){a.preload='metadata'}var vf=a.play();if(vf!==undefined){vf.then(()=>{if(a.autoplay){M(a)}else{K(a)}}).catch(error=>{K(a)})}}else{if(a.readyState>2){M(a)}else{V(a);if(a.zf==a.zd){T(a)}a.tb=setInterval(L,250,a)}}};function K(a){a.pause();D(a,'off');a.currentTime=0;a.zf=0;a.zk=f;if(a.autoplay&&c){if(a.id==c.id){d=c;c=f}}};function L(a){V(a);var vg=0;for(var i=0;i<pn(a).length;i++){if(pn(a).start(pn(a).length-1-i)<=pm(a)){vg=pn(a).end(pn(a).length-1-i);break}}if(vg>=pm(a)){clearInterval(a.tb);M(a)}};function M(a){a.zh=f;a.zk=f;if(!a.zl){if(!a.zm){O(a)}}else{R(a)}};function O(a){if(pm(a)==pl(a)){T(a)}V(a);d=f;a.zl=t;if(a.zd>0){a.tc=setInterval(Q,q,a)}a.play();var vp=setTimeout(function(){if(a.zl&&a.paused){R()}clearTimeout(vp)},25);D(a,'play')};function N(vo){if(!vo){if(d){vo=d.id}else{vo=b[0]}}var a=A[vo];if(!a.zl){C(a)}};function Q(a){if(!a.zn){P(a);if(pm(a)==pl(a)){if(a.loop){T(a)}else{R(0)}}}};function P(a){a.zf=pp(pm(a)*a.zd/pl(a));a.za.style.left=a.zf+'px'};function R(vm){if(c){clearInterval(c['tc']);c.zm=t;c.zl=f;c.pause();D(c,'off');if(vm==0){T(c)}else{c.zf=c.za.offsetLeft}if(!c.zk){d=c}c=f}};function T(a){if(pl(a)){a.currentTime=0}a.zf=0;a.za.style.left=0+'px'};function S(vo){if(!vo){if(d){vo=d.id}else{vo=b[0]}}var a=A[vo];T(a)};function U(a){if(pl(a)){var vh;if(a.zd==0){vh=0}else{vh=pp(a.zf/a.zd*pl(a)*100)/100}var vi=0;for(var i=0;i<pn(a).length;i++){if(pn(a).start(pn(a).length-1-i)<=vh){vi=pn(a).end(pn(a).length-1-i);break}}a.zg=pp(vi/pl(a)*100);a.za.parentNode.parentNode.querySelector('div:nth-child(2)').querySelector('div').style.width=a.zg+'%';if(a.zg==100){clearInterval(a.ta);a.zo=f}}};function V(a){if(a.zd>0){a.currentTime=a.zf/a.zd*pl(a)}};function W(){var vj=document.querySelectorAll(pa);vj.forEach((vo)=>{var vk=vo.getAttribute('id');var a=A[vk];if(a.zo){clearInterval(a.ta)}a.zb=a.za.offsetWidth;var vl=vo.querySelector(pb).offsetWidth-a.zb;if(vl<0){vl=0}if((a.za.offsetLeft>0)&&(vk!=c.id)){a.zf=pp(a.za.offsetLeft/a.zd*vl);a.za.style.left=a.zf+'px'}a.zd=vl;if(pl(a)&&!a.zl){V(a)}if(a.zo){a.ta=setInterval(U,500,a)}})};window.addEventListener('resize',W);return{init:Be,Audio:A,Play:N,Stop:R,Reset:S,players:Xa,active:Xb,last:Xc};function Xa(){return b}function Xb(){if(c){return c.id}else{return f}}function Xc(){if(d){return d.id}else{return f}}function Be(){d=f;c=f;A={};B()}})();
+"use strict";
+var Essential_Audio = (() => {
+  var audioElements = {};
+  var playerIds = [];
+  var currentAudio = false;
+  var lastAudio = false;
+  var autoplayInit = false;
+  var h;
+  var i;
+  var j;
+  var k = false;
+  var l;
+  var m = false;
+  var o;
+  var p;
+  var duration = (audio) => {
+    return audio.duration;
+  };
+  var currentTime = (audio) => {
+    return audio.currentTime;
+  };
+  var buffered = (audio) => {
+    return audio.buffered;
+  };
+  var po = (e) => {
+    if (e.changedTouches) {
+      j = Math.round(e.changedTouches[0].pageX);
+    } else {
+      j = Math.round(e.pageX);
+    }
+  };
+  if (document.readyState != "loading") {
+    setupPlayers();
+  } else {
+    document.addEventListener("DOMContentLoaded", setupPlayers);
+  }
+  var ie = false;
+  try {
+    var ig = Object.defineProperty({}, "passive", {
+      get: () => {
+        ie = true;
+      },
+    });
+    document.addEventListener("ig", null, ig);
+    document.removeEventListener("ig", null, ig);
+  } catch (e) {}
+  function updatePlayheadLabel(audio, label) {
+    audio.playhead.setAttribute("aria-label", `${label}: ${audio.title}`);
+  }
+  function setupPlayers() {
+    var rootDivs = document.querySelectorAll("div.essential_audio");
+    rootDivs.forEach((rootDiv, index) => {
+      rootDiv.innerHTML =
+        '<div><div class="off"><!----></div></div><div><div><!----></div></div><div><!----></div>';
+      var id;
+      if (rootDiv.hasAttribute("id")) {
+        id = rootDiv.getAttribute("id");
+      } else {
+        id = "EAP_" + (index + 1);
+        rootDiv.setAttribute("id", id);
+      }
+      audioElements[id] = document.createElement("audio");
+      var audio = audioElements[id];
+      audio.id = id;
+      audio.playhead = rootDiv
+        .querySelector("div:nth-child(1)")
+        .querySelector("div");
+      audio.title = rootDiv.hasAttribute("data-title")
+        ? rootDiv.getAttribute("data-title")
+        : id;
+      updatePlayheadLabel(audio, "play");
+      audio.playhead.setAttribute("tab-index", 0);
+      audio.playhead.setAttribute("role", "button");
+      audio.playheadWidth = audio.playhead.offsetWidth;
+      audio.zc = rootDiv.querySelector("div:nth-child(3)");
+      audio.zd =
+        rootDiv.querySelector("div:nth-child(1)").offsetWidth -
+        audio.playheadWidth;
+      if (audio.zd < 0) {
+        audio.zd = 0;
+      }
+      audio.sources = rootDiv.getAttribute("data-url");
+      audio.zf = 0;
+      audio.zg = 0;
+      audio.zh = false;
+      audio.zis = 0;
+      audio.zj = false;
+      audio.zk = false;
+      audio.zl = false;
+      audio.zm = false;
+      audio.zn = false;
+      audio.isPlaying = false;
+      playerIds[index] = id;
+      audio.crossOrigin = "anonymous";
+      audio.preload = "metadata";
+      if (rootDiv.hasAttribute("data-loop")) {
+        audio.loop = true;
+      }
+      if (rootDiv.hasAttribute("data-scratch")) {
+        audio.zp = true;
+      } else {
+        audio.zp = false;
+      }
+      if (rootDiv.hasAttribute("data-passive")) {
+        audio.zq = true;
+      } else {
+        audio.zq = false;
+      }
+      if (rootDiv.hasAttribute("data-autoplay")) {
+        if (!autoplayInit) {
+          autoplayInit = true;
+          audio.autoplay = true;
+          audio.preload = "auto";
+          currentAudio = audio;
+          initAudioElement(audio);
+        }
+      }
+      if (rootDiv.hasAttribute("data-preload")) {
+        if (!audio.autoplay) {
+          audio.preload = "auto";
+          initAudioElement(audio);
+        }
+      }
+      audio.playhead.onmousedown = (e) => {
+        if (!k) {
+          po(e);
+          window.addEventListener("mousemove", (e) => {
+            po(e);
+          });
+          Ba(audio);
+        }
+      };
+      if (!audio.zq) {
+        audio.playhead.ontouchstart = (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          clearTimeout(l);
+          k = true;
+          po(e);
+          window.addEventListener("touchmove", (e) => {
+            po(e);
+          });
+          Ba(audio);
+        };
+      } else {
+        audio.playhead.addEventListener(
+          "touchstart",
+          (e) => {
+            e.stopPropagation();
+            clearTimeout(l);
+            k = true;
+            po(e);
+            window.addEventListener("touchmove", (e) => {
+              po(e);
+            });
+            Ba(audio);
+          },
+          ie ? { passive: true } : false
+        );
+      }
+      audio.zc.onmousedown = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (!k) {
+          po(e);
+          window.addEventListener("mousemove", (e) => {
+            po(e);
+          });
+          Bb(audio);
+        }
+      };
+      if (!audio.zq) {
+        audio.zc.ontouchstart = (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          clearTimeout(l);
+          k = true;
+          po(e);
+          window.addEventListener("touchmove", (e) => {
+            po(e);
+          });
+          Bb(audio);
+        };
+      } else {
+        audio.zc.addEventListener(
+          "touchstart",
+          (e) => {
+            e.stopPropagation();
+            clearTimeout(l);
+            k = true;
+            po(e);
+            window.addEventListener("touchmove", (e) => {
+              po(e);
+            });
+            Bb(audio);
+          },
+          ie ? { passive: true } : false
+        );
+      }
+    });
+  }
+  function Ba(audio) {
+    audio.zn = true;
+    h = j;
+    i = h - (audio.playhead.getBoundingClientRect().left + window.scrollX);
+    if (!k) {
+      window.addEventListener("mousemove", Bc);
+    } else {
+      audio.te = setTimeout(function () {
+        window.addEventListener("touchmove", Bc);
+        clearTimeout(audio.te);
+      }, 100);
+    }
+    function Bc() {
+      if (h != j) {
+        m = true;
+        if (audio.zd > 0) {
+          audio.playhead.classList.add("drag");
+        }
+      }
+      if (m && audio.zd > 0) {
+        o =
+          j -
+          (audio.playhead.parentNode.getBoundingClientRect().left +
+            window.scrollX) -
+          i;
+        audio.zf = Math.min(Math.max(o, 0), audio.zd);
+        audio.playhead.style.left = audio.zf + "px";
+        if (audio.zp && audio.zl) {
+          V(audio);
+          if (audio.paused && currentTime(audio) != duration(audio)) {
+            audio.play();
+          }
+        }
+      }
+    }
+    if (!k) {
+      window.addEventListener("mouseup", Bd);
+    } else {
+      window.addEventListener("touchend", Bd);
+    }
+    function Bd() {
+      clearTimeout(audio.te);
+      if (!k) {
+        window.removeEventListener("mousemove", Bc);
+        window.removeEventListener("mousemove", (e) => {
+          po(e);
+        });
+        window.removeEventListener("mouseup", Bd);
+      } else {
+        window.removeEventListener("touchmove", Bc);
+        window.removeEventListener("touchmove", (e) => {
+          po(e);
+        });
+        window.removeEventListener("touchend", Bd);
+      }
+      if (m) {
+        if (duration(audio) && audio.zd > 0) {
+          if (!audio.zp || !audio.zl) {
+            V(audio);
+          }
+          if (
+            audio.zl &&
+            audio.paused &&
+            currentTime(audio) != duration(audio)
+          ) {
+            audio.play();
+          }
+        }
+        m = false;
+        audio.playhead.classList.remove("drag");
+      } else {
+        if (currentAudio.id && currentAudio.id == audio.id && audio.zl) {
+          P(audio);
+        }
+        if (!audio.zj) {
+          startPlaying(audio);
+        }
+      }
+      audio.zn = false;
+      if (k) {
+        l = setTimeout(function () {
+          k = false;
+          clearTimeout(l);
+        }, 150);
+      }
+    }
+  }
+  function Bb(audio) {
+    if (audio.zd > 0) {
+      audio.zn = true;
+      h = j;
+      i = Math.floor(audio.playheadWidth / 2);
+      if (!k) {
+        window.addEventListener("mousemove", Bf);
+      } else {
+        audio.te = setTimeout(function () {
+          window.addEventListener("touchmove", Bf);
+          clearTimeout(audio.te);
+        }, 100);
+      }
+      function Bf() {
+        m = true;
+        audio.playhead.classList.add("drag");
+        o = j - audio.playhead.parentNode.getBoundingClientRect().left - i;
+        audio.zf = Math.min(Math.max(o, 0), audio.zd);
+        audio.playhead.style.left = audio.zf + "px";
+        if (audio.zp && audio.zl) {
+          V(audio);
+          if (audio.paused && currentTime(audio) != duration(audio)) {
+            audio.play();
+          }
+        }
+      }
+      if (!k) {
+        window.addEventListener("mouseup", onMouseUp);
+      } else {
+        window.addEventListener("touchend", onMouseUp);
+      }
+      function onMouseUp() {
+        clearTimeout(audio.te);
+        if (!k) {
+          window.removeEventListener("mousemove", Bf);
+          window.removeEventListener("mousemove", (e) => {
+            po(e);
+          });
+          window.removeEventListener("mouseup", onMouseUp);
+        } else {
+          window.removeEventListener("touchmove", Bf);
+          window.removeEventListener("touchmove", (e) => {
+            po(e);
+          });
+          window.removeEventListener("touchend", onMouseUp);
+        }
+        if (m) {
+          if (duration(audio)) {
+            if (!audio.zp || audio.zl) {
+              V(audio);
+            }
+            if (
+              audio.zl &&
+              audio.paused &&
+              currentTime(audio) != duration(audio)
+            ) {
+              audio.play();
+            }
+          }
+          m = false;
+          audio.playhead.classList.remove("drag");
+        } else {
+          p = j - audio.playhead.parentNode.getBoundingClientRect().left - i;
+          audio.zf = Math.min(Math.max(p, 0), audio.zd);
+          audio.playhead.style.left = audio.zf + "px";
+          if (duration(audio)) {
+            V(audio);
+            if (audio.zl) {
+              audio.play();
+            }
+          }
+        }
+        audio.zn = false;
+        if (k) {
+          l = setTimeout(function () {
+            k = false;
+            clearTimeout(l);
+          }, 150);
+        }
+      }
+    }
+  }
+  function startPlaying(audio) {
+    if (currentAudio) {
+      stop();
+      if (audio.id == currentAudio.id) {
+        return;
+      }
+    }
+    currentAudio = audio;
+    if (duration(audio)) {
+      O(audio);
+    } else {
+      if (!audio.zh) {
+        initAudioElement(audio);
+      }
+    }
+  }
+  function applyClassToPlayhead(audio, vn) {
+    audio.playhead.setAttribute("class", "");
+    audio.playhead.classList.add(vn);
+  }
+  function initAudioElement(audio) {
+    applyClassToPlayhead(audio, "load");
+    updatePlayheadLabel(audio, "loading");
+    audio.zh = true;
+    audio.zk = true;
+    audio.onplay = () => {
+      if (!audio.zk) {
+        clearTimeout(audio.td);
+        applyClassToPlayhead(audio, "play");
+        updatePlayheadLabel(audio, "pause");
+      }
+      if (audio.id == lastAudio.id) {
+        currentAudio = audio;
+        lastAudio = false;
+        audio.zl = true;
+        if (audio.zd > 0) {
+          audio.tc = setInterval(Q, 50, audio);
+        }
+      }
+    };
+    audio.onplaying = () => {
+      clearTimeout(audio.td);
+      applyClassToPlayhead(audio, "play");
+      updatePlayheadLabel(audio, "pause");
+    };
+    audio.onwaiting = () => {
+      audio.td = setTimeout(() => {
+        applyClassToPlayhead(audio, "load");
+        updatePlayheadLabel(audio, "loading");
+      }, 50);
+    };
+    audio.onpause = () => {
+      if (!audio.zk && !audio.zn && !audio.ended) {
+        applyClassToPlayhead(audio, "off");
+        updatePlayheadLabel(audio, "play");
+      }
+      if (audio.zl && !audio.zk && !audio.ended) {
+        stop();
+      }
+    };
+    audio.onended = () => {
+      if (audio.zd == 0 && !audio.loop) {
+        stop(0);
+      }
+    };
+    audio.onseeking = () => {
+      if (audio.id == lastAudio.id) {
+        P(audio);
+      }
+    };
+    audio.onseeked = () => {
+      if (audio.id == lastAudio.id) {
+        P(audio);
+      }
+    };
+    audio.onloadedmetadata = () => {
+      audio.onloadedmetadata = null;
+      J(audio);
+    };
+    audio.onprogress = () => {
+      audio.onprogress = null;
+      audio.playAnimationInterval = setInterval(updatePlayProgress, 500, audio);
+      audio.isPlaying = true;
+    };
+    var sources = audio.sources.split(",");
+    var audioHasValidSource = false;
+    for (var i = 0; i < sources.length; i++) {
+      sources[i] = sources[i].trim();
+      if (sources[i] != "") {
+        appendSource(audio, sources[i], i + 1);
+        audioHasValidSource = true;
+      }
+    }
+    if (!audioHasValidSource) {
+      handleLoadFailed(audio);
+    }
+  }
+  function appendSource(audio, file_url, sourceIndex) {
+    var sourceId = audio.id + "_" + sourceIndex;
+    audio.innerHTML +=
+      '<source id="' +
+      sourceId +
+      '" src="' +
+      file_url +
+      '" crossorigin="anonymous">';
+  }
+  function handleLoadFailed(audio) {
+    audio.zh = false;
+    audio.zm = false;
+    audio.zl = false;
+    audio.zj = true;
+    applyClassToPlayhead(audio, "error");
+    updatePlayheadLabel(audio, "error loading");
+    if (audio.id == currentAudio.id) {
+      currentAudio = false;
+    }
+  }
+  function J(audio) {
+    if (audio.preload == "auto") {
+      if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+        audio.preload = "metadata";
+      }
+      var vf = audio.play();
+      if (vf !== undefined) {
+        vf.then(() => {
+          if (audio.autoplay) {
+            M(audio);
+          } else {
+            K(audio);
+          }
+        }).catch((error) => {
+          K(audio);
+        });
+      }
+    } else {
+      if (audio.readyState > 2) {
+        M(audio);
+      } else {
+        V(audio);
+        if (audio.zf == audio.zd) {
+          T(audio);
+        }
+        audio.tb = setInterval(L, 250, audio);
+      }
+    }
+  }
+  function K(audio) {
+    audio.pause();
+    applyClassToPlayhead(audio, "off");
+    updatePlayheadLabel(audio, "play");
+    audio.currentTime = 0;
+    audio.zf = 0;
+    audio.zk = false;
+    if (audio.autoplay && currentAudio) {
+      if (audio.id == currentAudio.id) {
+        lastAudio = currentAudio;
+        currentAudio = false;
+      }
+    }
+  }
+  function L(audio) {
+    V(audio);
+    var vg = 0;
+    for (var i = 0; i < buffered(audio).length; i++) {
+      if (
+        buffered(audio).start(buffered(audio).length - 1 - i) <=
+        currentTime(audio)
+      ) {
+        vg = buffered(audio).end(buffered(audio).length - 1 - i);
+        break;
+      }
+    }
+    if (vg >= currentTime(audio)) {
+      clearInterval(audio.tb);
+      M(audio);
+    }
+  }
+  function M(audio) {
+    audio.zh = false;
+    audio.zk = false;
+    if (!audio.zl) {
+      if (!audio.zm) {
+        O(audio);
+      }
+    } else {
+      stop(audio);
+    }
+  }
+  function O(audio) {
+    if (currentTime(audio) == duration(audio)) {
+      T(audio);
+    }
+    V(audio);
+    lastAudio = false;
+    audio.zl = true;
+    if (audio.zd > 0) {
+      audio.tc = setInterval(Q, 50, audio);
+    }
+    audio.play();
+    var vp = setTimeout(function () {
+      if (audio.zl && audio.paused) {
+        stop();
+      }
+      clearTimeout(vp);
+    }, 25);
+    applyClassToPlayhead(audio, "play");
+    updatePlayheadLabel(audio, "pause");
+  }
+  function play(id) {
+    if (!id) {
+      if (lastAudio) {
+        id = lastAudio.id;
+      } else {
+        id = playerIds[0];
+      }
+    }
+    var audio = audioElements[id];
+    if (!audio.zl) {
+      startPlaying(audio);
+    }
+  }
+  function Q(audio) {
+    if (!audio.zn) {
+      P(audio);
+      if (currentTime(audio) == duration(audio)) {
+        if (audio.loop) {
+          T(audio);
+        } else {
+          stop(0);
+        }
+      }
+    }
+  }
+  function P(audio) {
+    audio.zf = Math.round((currentTime(audio) * audio.zd) / duration(audio));
+    audio.playhead.style.left = audio.zf + "px";
+  }
+  function stop(vm) {
+    if (currentAudio) {
+      clearInterval(currentAudio["tc"]);
+      currentAudio.zm = true;
+      currentAudio.zl = false;
+      currentAudio.pause();
+      applyClassToPlayhead(currentAudio, "off");
+      updatePlayheadLabel(currentAudio, "play");
+      if (vm == 0) {
+        T(currentAudio);
+      } else {
+        currentAudio.zf = currentAudio.playhead.offsetLeft;
+      }
+      if (!currentAudio.zk) {
+        lastAudio = currentAudio;
+      }
+      currentAudio = false;
+    }
+  }
+  function T(audio) {
+    if (duration(audio)) {
+      audio.currentTime = 0;
+    }
+    audio.zf = 0;
+    audio.playhead.style.left = 0 + "px";
+  }
+  function reset(id) {
+    if (!id) {
+      if (lastAudio) {
+        id = lastAudio.id;
+      } else {
+        id = playerIds[0];
+      }
+    }
+    T(audioElements[id]);
+  }
+  function updatePlayProgress(audio) {
+    if (duration(audio)) {
+      var vh;
+      if (audio.zd == 0) {
+        vh = 0;
+      } else {
+        vh = Math.round((audio.zf / audio.zd) * duration(audio) * 100) / 100;
+      }
+      var vi = 0;
+      for (var i = 0; i < buffered(audio).length; i++) {
+        if (buffered(audio).start(buffered(audio).length - 1 - i) <= vh) {
+          vi = buffered(audio).end(buffered(audio).length - 1 - i);
+          break;
+        }
+      }
+      audio.zg = Math.round((vi / duration(audio)) * 100);
+      audio.playhead.parentNode.parentNode
+        .querySelector("div:nth-child(2)")
+        .querySelector("div").style.width = audio.zg + "%";
+      if (audio.zg == 100) {
+        clearInterval(audio.playAnimationInterval);
+        audio.isPlaying = false;
+      }
+    }
+  }
+  function V(audio) {
+    if (audio.zd > 0) {
+      audio.currentTime = (audio.zf / audio.zd) * duration(audio);
+    }
+  }
+  function onResize() {
+    var rootDivs = document.querySelectorAll("div.essential_audio");
+    rootDivs.forEach((rootDiv) => {
+      var id = rootDiv.getAttribute("id");
+      var audio = audioElements[id];
+      if (audio.isPlaying) {
+        clearInterval(audio.playAnimationInterval);
+      }
+      audio.playheadWidth = audio.playhead.offsetWidth;
+      var vl =
+        rootDiv.querySelector("div:nth-child(1)").offsetWidth -
+        audio.playheadWidth;
+      if (vl < 0) {
+        vl = 0;
+      }
+      if (audio.playhead.offsetLeft > 0 && id != currentAudio.id) {
+        audio.zf = Math.round((audio.playhead.offsetLeft / audio.zd) * vl);
+        audio.playhead.style.left = audio.zf + "px";
+      }
+      audio.zd = vl;
+      if (duration(audio) && !audio.zl) {
+        V(audio);
+      }
+      if (audio.isPlaying) {
+        audio.playAnimationInterval = setInterval(
+          updatePlayProgress,
+          500,
+          audio
+        );
+      }
+    });
+  }
+  window.addEventListener("resize", onResize);
+  return {
+    init: init,
+    Audio: audioElements,
+    Play: play,
+    Stop: stop,
+    Reset: reset,
+    players: players,
+    active: active,
+    last: last,
+  };
+  function players() {
+    return playerIds;
+  }
+  function active() {
+    if (currentAudio) {
+      return currentAudio.id;
+    } else {
+      return false;
+    }
+  }
+  function last() {
+    if (lastAudio) {
+      return lastAudio.id;
+    } else {
+      return false;
+    }
+  }
+  function init() {
+    lastAudio = false;
+    currentAudio = false;
+    audioElements = {};
+    setupPlayers();
+  }
+})();
