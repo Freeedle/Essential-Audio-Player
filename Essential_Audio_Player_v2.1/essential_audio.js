@@ -371,18 +371,18 @@ var Essential_Audio = (() => {
       }
     }
   }
-  function D(audio, vn) {
+  function applyClassToPlayhead(audio, vn) {
     audio.za.setAttribute("class", "");
     audio.za.classList.add(vn);
   }
   function E(audio) {
-    D(audio, "load");
+    applyClassToPlayhead(audio, "load");
     audio.zh = true;
     audio.zk = true;
     audio.onplay = () => {
       if (!audio.zk) {
         clearTimeout(audio.td);
-        D(audio, "play");
+        applyClassToPlayhead(audio, "play");
       }
       if (audio.id == lastAudio.id) {
         currentAudio = audio;
@@ -395,16 +395,16 @@ var Essential_Audio = (() => {
     };
     audio.onplaying = () => {
       clearTimeout(audio.td);
-      D(audio, "play");
+      applyClassToPlayhead(audio, "play");
     };
     audio.onwaiting = () => {
       audio.td = setTimeout(() => {
-        D(audio, "load");
+        applyClassToPlayhead(audio, "load");
       }, 50);
     };
     audio.onpause = () => {
       if (!audio.zk && !audio.zn && !audio.ended) {
-        D(audio, "off");
+        applyClassToPlayhead(audio, "off");
       }
       if (audio.zl && !audio.zk && !audio.ended) {
         stop();
@@ -457,7 +457,7 @@ var Essential_Audio = (() => {
     audio.zm = false;
     audio.zl = false;
     audio.zj = true;
-    D(audio, "error");
+    applyClassToPlayhead(audio, "error");
     if (audio.id == currentAudio.id) {
       currentAudio = false;
     }
@@ -493,7 +493,7 @@ var Essential_Audio = (() => {
   }
   function K(audio) {
     audio.pause();
-    D(audio, "off");
+    applyClassToPlayhead(audio, "off");
     audio.currentTime = 0;
     audio.zf = 0;
     audio.zk = false;
@@ -549,7 +549,7 @@ var Essential_Audio = (() => {
       }
       clearTimeout(vp);
     }, 25);
-    D(audio, "play");
+    applyClassToPlayhead(audio, "play");
   }
   function play(vo) {
     if (!vo) {
@@ -586,7 +586,7 @@ var Essential_Audio = (() => {
       currentAudio.zm = true;
       currentAudio.zl = false;
       currentAudio.pause();
-      D(currentAudio, "off");
+      applyClassToPlayhead(currentAudio, "off");
       if (vm == 0) {
         T(currentAudio);
       } else {
