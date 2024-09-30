@@ -357,11 +357,9 @@ var Essential_Audio = (() => {
   }
   function C(audio) {
     if (c) {
+      stop();
       if (audio.id == c.id) {
-        stop();
         return;
-      } else {
-        stop();
       }
     }
     c = audio;
