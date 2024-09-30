@@ -3,8 +3,8 @@
 var Essential_Audio = (() => {
   var audioElements = {};
   var b = [];
-  var c = false;
-  var d = false;
+  var currentAudio = false;
+  var lastAudio = false;
   var autoplayInit = false;
   var h;
   var i;
@@ -99,7 +99,7 @@ var Essential_Audio = (() => {
           autoplayInit = true;
           audio.autoplay = true;
           audio.preload = "auto";
-          c = audio;
+          currentAudio = audio;
           E(audio);
         }
       }
@@ -257,7 +257,7 @@ var Essential_Audio = (() => {
         m = false;
         audio.za.classList.remove("drag");
       } else {
-        if (c.id && c.id == audio.id && audio.zl) {
+        if (currentAudio.id && currentAudio.id == audio.id && audio.zl) {
           P(audio);
         }
         if (!audio.zj) {
@@ -356,13 +356,13 @@ var Essential_Audio = (() => {
     }
   }
   function C(audio) {
-    if (c) {
+    if (currentAudio) {
       stop();
-      if (audio.id == c.id) {
+      if (audio.id == currentAudio.id) {
         return;
       }
     }
-    c = audio;
+    currentAudio = audio;
     if (duration(audio)) {
       O(audio);
     } else {
@@ -384,9 +384,9 @@ var Essential_Audio = (() => {
         clearTimeout(audio.td);
         D(audio, "play");
       }
-      if (audio.id == d.id) {
-        c = audio;
-        d = false;
+      if (audio.id == lastAudio.id) {
+        currentAudio = audio;
+        lastAudio = false;
         audio.zl = true;
         if (audio.zd > 0) {
           audio.tc = setInterval(Q, 50, audio);
@@ -416,12 +416,12 @@ var Essential_Audio = (() => {
       }
     };
     audio.onseeking = () => {
-      if (audio.id == d.id) {
+      if (audio.id == lastAudio.id) {
         P(audio);
       }
     };
     audio.onseeked = () => {
-      if (audio.id == d.id) {
+      if (audio.id == lastAudio.id) {
         P(audio);
       }
     };
@@ -458,8 +458,8 @@ var Essential_Audio = (() => {
     audio.zl = false;
     audio.zj = true;
     D(audio, "error");
-    if (audio.id == c.id) {
-      c = false;
+    if (audio.id == currentAudio.id) {
+      currentAudio = false;
     }
   }
   function J(audio) {
@@ -497,10 +497,10 @@ var Essential_Audio = (() => {
     audio.currentTime = 0;
     audio.zf = 0;
     audio.zk = false;
-    if (audio.autoplay && c) {
-      if (audio.id == c.id) {
-        d = c;
-        c = false;
+    if (audio.autoplay && currentAudio) {
+      if (audio.id == currentAudio.id) {
+        lastAudio = currentAudio;
+        currentAudio = false;
       }
     }
   }
@@ -537,7 +537,7 @@ var Essential_Audio = (() => {
       T(audio);
     }
     V(audio);
-    d = false;
+    lastAudio = false;
     audio.zl = true;
     if (audio.zd > 0) {
       audio.tc = setInterval(Q, 50, audio);
@@ -553,8 +553,8 @@ var Essential_Audio = (() => {
   }
   function play(vo) {
     if (!vo) {
-      if (d) {
-        vo = d.id;
+      if (lastAudio) {
+        vo = lastAudio.id;
       } else {
         vo = b[0];
       }
@@ -581,21 +581,21 @@ var Essential_Audio = (() => {
     audio.za.style.left = audio.zf + "px";
   }
   function stop(vm) {
-    if (c) {
-      clearInterval(c["tc"]);
-      c.zm = true;
-      c.zl = false;
-      c.pause();
-      D(c, "off");
+    if (currentAudio) {
+      clearInterval(currentAudio["tc"]);
+      currentAudio.zm = true;
+      currentAudio.zl = false;
+      currentAudio.pause();
+      D(currentAudio, "off");
       if (vm == 0) {
-        T(c);
+        T(currentAudio);
       } else {
-        c.zf = c.za.offsetLeft;
+        currentAudio.zf = currentAudio.za.offsetLeft;
       }
-      if (!c.zk) {
-        d = c;
+      if (!currentAudio.zk) {
+        lastAudio = currentAudio;
       }
-      c = false;
+      currentAudio = false;
     }
   }
   function T(audio) {
@@ -607,8 +607,8 @@ var Essential_Audio = (() => {
   }
   function reset(vo) {
     if (!vo) {
-      if (d) {
-        vo = d.id;
+      if (lastAudio) {
+        vo = lastAudio.id;
       } else {
         vo = b[0];
       }
@@ -658,7 +658,7 @@ var Essential_Audio = (() => {
       if (vl < 0) {
         vl = 0;
       }
-      if (audio.za.offsetLeft > 0 && vk != c.id) {
+      if (audio.za.offsetLeft > 0 && vk != currentAudio.id) {
         audio.zf = Math.round((audio.za.offsetLeft / audio.zd) * vl);
         audio.za.style.left = audio.zf + "px";
       }
@@ -690,22 +690,22 @@ var Essential_Audio = (() => {
     return b;
   }
   function active() {
-    if (c) {
-      return c.id;
+    if (currentAudio) {
+      return currentAudio.id;
     } else {
       return false;
     }
   }
   function last() {
-    if (d) {
-      return d.id;
+    if (lastAudio) {
+      return lastAudio.id;
     } else {
       return false;
     }
   }
   function init() {
-    d = false;
-    c = false;
+    lastAudio = false;
+    currentAudio = false;
     audioElements = {};
     setupPlayers();
   }
