@@ -637,7 +637,7 @@ var Essential_Audio = (() => {
       a.currentTime = (a.zf / a.zd) * duration(a);
     }
   }
-  function W() {
+  function onResize() {
     var vj = document.querySelectorAll("div.essential_audio");
     vj.forEach((vo) => {
       var vk = vo.getAttribute("id");
@@ -663,7 +663,7 @@ var Essential_Audio = (() => {
       }
     });
   }
-  window.addEventListener("resize", W);
+  window.addEventListener("resize", onResize);
   return {
     init: init,
     Audio: audioElements,
