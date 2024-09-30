@@ -25,13 +25,10 @@ var Essential_Audio = (() => {
   };
   var po = (e) => {
     if (e.changedTouches) {
-      j = pp(e.changedTouches[0].pageX);
+      j = Math.round(e.changedTouches[0].pageX);
     } else {
-      j = pp(e.pageX);
+      j = Math.round(e.pageX);
     }
-  };
-  var pp = (x) => {
-    return Math.round(x);
   };
   if (document.readyState != "loading") {
     B();
@@ -571,7 +568,7 @@ var Essential_Audio = (() => {
     }
   }
   function P(a) {
-    a.zf = pp((currentTime(a) * a.zd) / duration(a));
+    a.zf = Math.round((currentTime(a) * a.zd) / duration(a));
     a.za.style.left = a.zf + "px";
   }
   function R(vm) {
@@ -616,7 +613,7 @@ var Essential_Audio = (() => {
       if (a.zd == 0) {
         vh = 0;
       } else {
-        vh = pp((a.zf / a.zd) * duration(a) * 100) / 100;
+        vh = Math.round((a.zf / a.zd) * duration(a) * 100) / 100;
       }
       var vi = 0;
       for (var i = 0; i < buffered(a).length; i++) {
@@ -625,7 +622,7 @@ var Essential_Audio = (() => {
           break;
         }
       }
-      a.zg = pp((vi / duration(a)) * 100);
+      a.zg = Math.round((vi / duration(a)) * 100);
       a.za.parentNode.parentNode
         .querySelector("div:nth-child(2)")
         .querySelector("div").style.width = a.zg + "%";
@@ -654,7 +651,7 @@ var Essential_Audio = (() => {
         vl = 0;
       }
       if (a.za.offsetLeft > 0 && vk != c.id) {
-        a.zf = pp((a.za.offsetLeft / a.zd) * vl);
+        a.zf = Math.round((a.za.offsetLeft / a.zd) * vl);
         a.za.style.left = a.zf + "px";
       }
       a.zd = vl;
