@@ -31,9 +31,9 @@ var Essential_Audio = (() => {
     }
   };
   if (document.readyState != "loading") {
-    B();
+    setupPlayers();
   } else {
-    document.addEventListener("DOMContentLoaded", B);
+    document.addEventListener("DOMContentLoaded", setupPlayers);
   }
   var ie = false;
   try {
@@ -45,7 +45,7 @@ var Essential_Audio = (() => {
     document.addEventListener("ig", null, ig);
     document.removeEventListener("ig", null, ig);
   } catch (e) {}
-  function B() {
+  function setupPlayers() {
     var rootDiv = document.querySelectorAll("div.essential_audio");
     rootDiv.forEach((vo, ib) => {
       vo.innerHTML =
@@ -665,7 +665,7 @@ var Essential_Audio = (() => {
   }
   window.addEventListener("resize", W);
   return {
-    init: Be,
+    init: init,
     Audio: A,
     Play: N,
     Stop: R,
@@ -691,10 +691,10 @@ var Essential_Audio = (() => {
       return false;
     }
   }
-  function Be() {
+  function init() {
     d = false;
     c = false;
     A = {};
-    B();
+    setupPlayers();
   }
 })();
