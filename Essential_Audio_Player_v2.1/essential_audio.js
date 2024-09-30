@@ -1,19 +1,18 @@
 // Essential Audio Player v2.1
 "use strict";
 var Essential_Audio = (() => {
-  var f = false;
   var n = null;
   var A = {};
   var b = [];
-  var c = f;
-  var d = f;
+  var c = false;
+  var d = false;
   var g = 0;
   var h;
   var i;
   var j;
-  var k = f;
+  var k = false;
   var l;
-  var m = f;
+  var m = false;
   var o;
   var p;
   var q = 50;
@@ -47,7 +46,7 @@ var Essential_Audio = (() => {
   } else {
     document.addEventListener("DOMContentLoaded", B);
   }
-  var ie = f;
+  var ie = false;
   try {
     var ig = Object.defineProperty({}, "passive", {
       get: () => {
@@ -82,14 +81,14 @@ var Essential_Audio = (() => {
       a.ze = vo.getAttribute("data-url");
       a.zf = 0;
       a.zg = 0;
-      a.zh = f;
+      a.zh = false;
       a.zis = 0;
-      a.zj = f;
-      a.zk = f;
-      a.zl = f;
-      a.zm = f;
-      a.zn = f;
-      a.zo = f;
+      a.zj = false;
+      a.zk = false;
+      a.zl = false;
+      a.zm = false;
+      a.zn = false;
+      a.zo = false;
       b[ib] = ic;
       a.crossOrigin = "anonymous";
       a.preload = "metadata";
@@ -99,12 +98,12 @@ var Essential_Audio = (() => {
       if (vo.hasAttribute("data-scratch")) {
         a.zp = true;
       } else {
-        a.zp = f;
+        a.zp = false;
       }
       if (vo.hasAttribute("data-passive")) {
         a.zq = true;
       } else {
-        a.zq = f;
+        a.zq = false;
       }
       if (vo.hasAttribute("data-autoplay")) {
         if (g < 1) {
@@ -155,7 +154,7 @@ var Essential_Audio = (() => {
             });
             Ba(a);
           },
-          ie ? { passive: true } : f
+          ie ? { passive: true } : false
         );
       }
       a.zc.onmousedown = (e) => {
@@ -194,7 +193,7 @@ var Essential_Audio = (() => {
             });
             Bb(a);
           },
-          ie ? { passive: true } : f
+          ie ? { passive: true } : false
         );
       }
     });
@@ -262,7 +261,7 @@ var Essential_Audio = (() => {
             a.play();
           }
         }
-        m = f;
+        m = false;
         a.za.classList.remove("drag");
       } else {
         if (c.id && c.id == a.id && a.zl) {
@@ -272,10 +271,10 @@ var Essential_Audio = (() => {
           C(a);
         }
       }
-      a.zn = f;
+      a.zn = false;
       if (k) {
         l = setTimeout(function () {
-          k = f;
+          k = false;
           clearTimeout(l);
         }, 150);
       }
@@ -336,7 +335,7 @@ var Essential_Audio = (() => {
               a.play();
             }
           }
-          m = f;
+          m = false;
           a.za.classList.remove("drag");
         } else {
           p = j - a.za.parentNode.getBoundingClientRect().left - i;
@@ -349,10 +348,10 @@ var Essential_Audio = (() => {
             }
           }
         }
-        a.zn = f;
+        a.zn = false;
         if (k) {
           l = setTimeout(function () {
-            k = f;
+            k = false;
             clearTimeout(l);
           }, 150);
         }
@@ -392,7 +391,7 @@ var Essential_Audio = (() => {
       }
       if (a.id == d.id) {
         c = a;
-        d = f;
+        d = false;
         a.zl = true;
         if (a.zd > 0) {
           a.tc = setInterval(Q, q, a);
@@ -446,7 +445,7 @@ var Essential_Audio = (() => {
       va[i] = va[i].trim();
       if (va[i] != "") {
         G(a, va[i], i + 1);
-        vb = f;
+        vb = false;
       }
     }
     if (vb) {
@@ -459,13 +458,13 @@ var Essential_Audio = (() => {
       '<source id="' + vd + '" src="' + file_url + '" crossorigin="anonymous">';
   }
   function H(a) {
-    a.zh = f;
-    a.zm = f;
-    a.zl = f;
+    a.zh = false;
+    a.zm = false;
+    a.zl = false;
     a.zj = true;
     D(a, "error");
     if (a.id == c.id) {
-      c = f;
+      c = false;
     }
   }
   function J(a) {
@@ -502,11 +501,11 @@ var Essential_Audio = (() => {
     D(a, "off");
     a.currentTime = 0;
     a.zf = 0;
-    a.zk = f;
+    a.zk = false;
     if (a.autoplay && c) {
       if (a.id == c.id) {
         d = c;
-        c = f;
+        c = false;
       }
     }
   }
@@ -525,8 +524,8 @@ var Essential_Audio = (() => {
     }
   }
   function M(a) {
-    a.zh = f;
-    a.zk = f;
+    a.zh = false;
+    a.zk = false;
     if (!a.zl) {
       if (!a.zm) {
         O(a);
@@ -540,7 +539,7 @@ var Essential_Audio = (() => {
       T(a);
     }
     V(a);
-    d = f;
+    d = false;
     a.zl = true;
     if (a.zd > 0) {
       a.tc = setInterval(Q, q, a);
@@ -587,7 +586,7 @@ var Essential_Audio = (() => {
     if (c) {
       clearInterval(c["tc"]);
       c.zm = true;
-      c.zl = f;
+      c.zl = false;
       c.pause();
       D(c, "off");
       if (vm == 0) {
@@ -598,7 +597,7 @@ var Essential_Audio = (() => {
       if (!c.zk) {
         d = c;
       }
-      c = f;
+      c = false;
     }
   }
   function T(a) {
@@ -640,7 +639,7 @@ var Essential_Audio = (() => {
         .querySelector("div").style.width = a.zg + "%";
       if (a.zg == 100) {
         clearInterval(a.ta);
-        a.zo = f;
+        a.zo = false;
       }
     }
   }
@@ -693,19 +692,19 @@ var Essential_Audio = (() => {
     if (c) {
       return c.id;
     } else {
-      return f;
+      return false;
     }
   }
   function Xc() {
     if (d) {
       return d.id;
     } else {
-      return f;
+      return false;
     }
   }
   function Be() {
-    d = f;
-    c = f;
+    d = false;
+    c = false;
     A = {};
     B();
   }
