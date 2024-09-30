@@ -439,12 +439,12 @@ var Essential_Audio = (() => {
       audio.playAnimationInterval = setInterval(updatePlayProgress, 500, audio);
       audio.zo = true;
     };
-    var va = audio.sources.split(",");
+    var sources = audio.sources.split(",");
     var vb = true;
-    for (var i = 0; i < va.length; i++) {
-      va[i] = va[i].trim();
-      if (va[i] != "") {
-        G(audio, va[i], i + 1);
+    for (var i = 0; i < sources.length; i++) {
+      sources[i] = sources[i].trim();
+      if (sources[i] != "") {
+        G(audio, sources[i], i + 1);
         vb = false;
       }
     }
