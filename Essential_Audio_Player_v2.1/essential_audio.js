@@ -46,8 +46,8 @@ var Essential_Audio = (() => {
     document.removeEventListener("ig", null, ig);
   } catch (e) {}
   function B() {
-    var ia = document.querySelectorAll("div.essential_audio");
-    ia.forEach((vo, ib) => {
+    var rootDiv = document.querySelectorAll("div.essential_audio");
+    rootDiv.forEach((vo, ib) => {
       vo.innerHTML =
         '<div><div class="off"><!----></div></div><div><div><!----></div></div><div><!----></div>';
       var ic;
