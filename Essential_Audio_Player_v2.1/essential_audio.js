@@ -2,7 +2,7 @@
 "use strict";
 var Essential_Audio = (() => {
   var audioElements = {};
-  var b = [];
+  var playerIds = [];
   var currentAudio = false;
   var lastAudio = false;
   var autoplayInit = false;
@@ -45,6 +45,9 @@ var Essential_Audio = (() => {
     document.addEventListener("ig", null, ig);
     document.removeEventListener("ig", null, ig);
   } catch (e) {}
+  function updatePlayheadLabel(audio, label) {
+    audio.playhead.setAttribute("aria-label", `${label}: ${audio.title}`);
+  }
   function setupPlayers() {
     var rootDivs = document.querySelectorAll("div.essential_audio");
     rootDivs.forEach((rootDiv, index) => {
@@ -63,6 +66,12 @@ var Essential_Audio = (() => {
       audio.playhead = rootDiv
         .querySelector("div:nth-child(1)")
         .querySelector("div");
+      audio.title = rootDiv.hasAttribute("data-title")
+        ? rootDiv.getAttribute("data-title")
+        : id;
+      updatePlayheadLabel(audio, "play");
+      audio.playhead.setAttribute("tab-index", 0);
+      audio.playhead.setAttribute("role", "button");
       audio.playheadWidth = audio.playhead.offsetWidth;
       audio.zc = rootDiv.querySelector("div:nth-child(3)");
       audio.zd =
@@ -81,8 +90,8 @@ var Essential_Audio = (() => {
       audio.zl = false;
       audio.zm = false;
       audio.zn = false;
-      audio.zo = false;
-      b[index] = id;
+      audio.isPlaying = false;
+      playerIds[index] = id;
       audio.crossOrigin = "anonymous";
       audio.preload = "metadata";
       if (rootDiv.hasAttribute("data-loop")) {
@@ -266,7 +275,7 @@ var Essential_Audio = (() => {
           P(audio);
         }
         if (!audio.zj) {
-          C(audio);
+          startPlaying(audio);
         }
       }
       audio.zn = false;
@@ -360,7 +369,7 @@ var Essential_Audio = (() => {
       }
     }
   }
-  function C(audio) {
+  function startPlaying(audio) {
     if (currentAudio) {
       stop();
       if (audio.id == currentAudio.id) {
@@ -382,12 +391,14 @@ var Essential_Audio = (() => {
   }
   function initAudioElement(audio) {
     applyClassToPlayhead(audio, "load");
+    updatePlayheadLabel(audio, "loading");
     audio.zh = true;
     audio.zk = true;
     audio.onplay = () => {
       if (!audio.zk) {
         clearTimeout(audio.td);
         applyClassToPlayhead(audio, "play");
+        updatePlayheadLabel(audio, "pause");
       }
       if (audio.id == lastAudio.id) {
         currentAudio = audio;
@@ -401,15 +412,18 @@ var Essential_Audio = (() => {
     audio.onplaying = () => {
       clearTimeout(audio.td);
       applyClassToPlayhead(audio, "play");
+      updatePlayheadLabel(audio, "pause");
     };
     audio.onwaiting = () => {
       audio.td = setTimeout(() => {
         applyClassToPlayhead(audio, "load");
+        updatePlayheadLabel(audio, "loading");
       }, 50);
     };
     audio.onpause = () => {
       if (!audio.zk && !audio.zn && !audio.ended) {
         applyClassToPlayhead(audio, "off");
+        updatePlayheadLabel(audio, "play");
       }
       if (audio.zl && !audio.zk && !audio.ended) {
         stop();
@@ -437,7 +451,7 @@ var Essential_Audio = (() => {
     audio.onprogress = () => {
       audio.onprogress = null;
       audio.playAnimationInterval = setInterval(updatePlayProgress, 500, audio);
-      audio.zo = true;
+      audio.isPlaying = true;
     };
     var sources = audio.sources.split(",");
     var audioHasValidSource = false;
@@ -467,6 +481,7 @@ var Essential_Audio = (() => {
     audio.zl = false;
     audio.zj = true;
     applyClassToPlayhead(audio, "error");
+    updatePlayheadLabel(audio, "error loading");
     if (audio.id == currentAudio.id) {
       currentAudio = false;
     }
@@ -503,6 +518,7 @@ var Essential_Audio = (() => {
   function K(audio) {
     audio.pause();
     applyClassToPlayhead(audio, "off");
+    updatePlayheadLabel(audio, "play");
     audio.currentTime = 0;
     audio.zf = 0;
     audio.zk = false;
@@ -559,18 +575,19 @@ var Essential_Audio = (() => {
       clearTimeout(vp);
     }, 25);
     applyClassToPlayhead(audio, "play");
+    updatePlayheadLabel(audio, "pause");
   }
-  function play(vo) {
-    if (!vo) {
+  function play(id) {
+    if (!id) {
       if (lastAudio) {
-        vo = lastAudio.id;
+        id = lastAudio.id;
       } else {
-        vo = b[0];
+        id = playerIds[0];
       }
     }
-    var audio = audioElements[vo];
+    var audio = audioElements[id];
     if (!audio.zl) {
-      C(audio);
+      startPlaying(audio);
     }
   }
   function Q(audio) {
@@ -596,6 +613,7 @@ var Essential_Audio = (() => {
       currentAudio.zl = false;
       currentAudio.pause();
       applyClassToPlayhead(currentAudio, "off");
+      updatePlayheadLabel(currentAudio, "play");
       if (vm == 0) {
         T(currentAudio);
       } else {
@@ -614,15 +632,15 @@ var Essential_Audio = (() => {
     audio.zf = 0;
     audio.playhead.style.left = 0 + "px";
   }
-  function reset(vo) {
-    if (!vo) {
+  function reset(id) {
+    if (!id) {
       if (lastAudio) {
-        vo = lastAudio.id;
+        id = lastAudio.id;
       } else {
-        vo = b[0];
+        id = playerIds[0];
       }
     }
-    T(audioElements[vo]);
+    T(audioElements[id]);
   }
   function updatePlayProgress(audio) {
     if (duration(audio)) {
@@ -645,7 +663,7 @@ var Essential_Audio = (() => {
         .querySelector("div").style.width = audio.zg + "%";
       if (audio.zg == 100) {
         clearInterval(audio.playAnimationInterval);
-        audio.zo = false;
+        audio.isPlaying = false;
       }
     }
   }
@@ -655,20 +673,21 @@ var Essential_Audio = (() => {
     }
   }
   function onResize() {
-    var vj = document.querySelectorAll("div.essential_audio");
-    vj.forEach((vo) => {
-      var vk = vo.getAttribute("id");
-      var audio = audioElements[vk];
-      if (audio.zo) {
+    var rootDivs = document.querySelectorAll("div.essential_audio");
+    rootDivs.forEach((rootDiv) => {
+      var id = rootDiv.getAttribute("id");
+      var audio = audioElements[id];
+      if (audio.isPlaying) {
         clearInterval(audio.playAnimationInterval);
       }
       audio.playheadWidth = audio.playhead.offsetWidth;
       var vl =
-        vo.querySelector("div:nth-child(1)").offsetWidth - audio.playheadWidth;
+        rootDiv.querySelector("div:nth-child(1)").offsetWidth -
+        audio.playheadWidth;
       if (vl < 0) {
         vl = 0;
       }
-      if (audio.playhead.offsetLeft > 0 && vk != currentAudio.id) {
+      if (audio.playhead.offsetLeft > 0 && id != currentAudio.id) {
         audio.zf = Math.round((audio.playhead.offsetLeft / audio.zd) * vl);
         audio.playhead.style.left = audio.zf + "px";
       }
@@ -676,7 +695,7 @@ var Essential_Audio = (() => {
       if (duration(audio) && !audio.zl) {
         V(audio);
       }
-      if (audio.zo) {
+      if (audio.isPlaying) {
         audio.playAnimationInterval = setInterval(
           updatePlayProgress,
           500,
@@ -697,7 +716,7 @@ var Essential_Audio = (() => {
     last: last,
   };
   function players() {
-    return b;
+    return playerIds;
   }
   function active() {
     if (currentAudio) {
