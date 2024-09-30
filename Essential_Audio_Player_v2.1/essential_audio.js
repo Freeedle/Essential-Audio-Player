@@ -1,7 +1,6 @@
 // Essential Audio Player v2.1
 "use strict";
 var Essential_Audio = (() => {
-  var t = true;
   var f = false;
   var n = null;
   var A = {};
@@ -52,7 +51,7 @@ var Essential_Audio = (() => {
   try {
     var ig = Object.defineProperty({}, "passive", {
       get: () => {
-        ie = t;
+        ie = true;
       },
     });
     document.addEventListener("ig", n, ig);
@@ -95,22 +94,22 @@ var Essential_Audio = (() => {
       a.crossOrigin = "anonymous";
       a.preload = "metadata";
       if (vo.hasAttribute("data-loop")) {
-        a.loop = t;
+        a.loop = true;
       }
       if (vo.hasAttribute("data-scratch")) {
-        a.zp = t;
+        a.zp = true;
       } else {
         a.zp = f;
       }
       if (vo.hasAttribute("data-passive")) {
-        a.zq = t;
+        a.zq = true;
       } else {
         a.zq = f;
       }
       if (vo.hasAttribute("data-autoplay")) {
         if (g < 1) {
           g = 1;
-          a.autoplay = t;
+          a.autoplay = true;
           a.preload = "auto";
           c = a;
           E(a);
@@ -136,7 +135,7 @@ var Essential_Audio = (() => {
           e.preventDefault();
           e.stopPropagation();
           clearTimeout(l);
-          k = t;
+          k = true;
           po(e);
           window.addEventListener(pg, (e) => {
             po(e);
@@ -149,14 +148,14 @@ var Essential_Audio = (() => {
           (e) => {
             e.stopPropagation();
             clearTimeout(l);
-            k = t;
+            k = true;
             po(e);
             window.addEventListener(pg, (e) => {
               po(e);
             });
             Ba(a);
           },
-          ie ? { passive: t } : f
+          ie ? { passive: true } : f
         );
       }
       a.zc.onmousedown = (e) => {
@@ -175,7 +174,7 @@ var Essential_Audio = (() => {
           e.preventDefault();
           e.stopPropagation();
           clearTimeout(l);
-          k = t;
+          k = true;
           po(e);
           window.addEventListener(pg, (e) => {
             po(e);
@@ -188,20 +187,20 @@ var Essential_Audio = (() => {
           (e) => {
             e.stopPropagation();
             clearTimeout(l);
-            k = t;
+            k = true;
             po(e);
             window.addEventListener(pg, (e) => {
               po(e);
             });
             Bb(a);
           },
-          ie ? { passive: t } : f
+          ie ? { passive: true } : f
         );
       }
     });
   }
   function Ba(a) {
-    a.zn = t;
+    a.zn = true;
     h = j;
     i = h - (a.za.getBoundingClientRect().left + window.scrollX);
     if (!k) {
@@ -214,7 +213,7 @@ var Essential_Audio = (() => {
     }
     function Bc() {
       if (h != j) {
-        m = t;
+        m = true;
         if (a.zd > 0) {
           a.za.classList.add("drag");
         }
@@ -284,7 +283,7 @@ var Essential_Audio = (() => {
   }
   function Bb(a) {
     if (a.zd > 0) {
-      a.zn = t;
+      a.zn = true;
       h = j;
       i = Math.floor(a.zb / 2);
       if (!k) {
@@ -296,7 +295,7 @@ var Essential_Audio = (() => {
         }, 100);
       }
       function Bf() {
-        m = t;
+        m = true;
         a.za.classList.add("drag");
         o = j - a.za.parentNode.getBoundingClientRect().left - i;
         a.zf = Math.min(Math.max(o, 0), a.zd);
@@ -384,8 +383,8 @@ var Essential_Audio = (() => {
   }
   function E(a) {
     D(a, "load");
-    a.zh = t;
-    a.zk = t;
+    a.zh = true;
+    a.zk = true;
     a.onplay = () => {
       if (!a.zk) {
         clearTimeout(a.td);
@@ -394,7 +393,7 @@ var Essential_Audio = (() => {
       if (a.id == d.id) {
         c = a;
         d = f;
-        a.zl = t;
+        a.zl = true;
         if (a.zd > 0) {
           a.tc = setInterval(Q, q, a);
         }
@@ -439,10 +438,10 @@ var Essential_Audio = (() => {
     a.onprogress = () => {
       a.onprogress = n;
       a.ta = setInterval(U, 500, a);
-      a.zo = t;
+      a.zo = true;
     };
     var va = a.ze.split(",");
-    var vb = t;
+    var vb = true;
     for (var i = 0; i < va.length; i++) {
       va[i] = va[i].trim();
       if (va[i] != "") {
@@ -463,7 +462,7 @@ var Essential_Audio = (() => {
     a.zh = f;
     a.zm = f;
     a.zl = f;
-    a.zj = t;
+    a.zj = true;
     D(a, "error");
     if (a.id == c.id) {
       c = f;
@@ -542,7 +541,7 @@ var Essential_Audio = (() => {
     }
     V(a);
     d = f;
-    a.zl = t;
+    a.zl = true;
     if (a.zd > 0) {
       a.tc = setInterval(Q, q, a);
     }
@@ -587,7 +586,7 @@ var Essential_Audio = (() => {
   function R(vm) {
     if (c) {
       clearInterval(c["tc"]);
-      c.zm = t;
+      c.zm = true;
       c.zl = f;
       c.pause();
       D(c, "off");
