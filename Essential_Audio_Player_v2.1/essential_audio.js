@@ -58,68 +58,68 @@ var Essential_Audio = (() => {
         vo.setAttribute("id", ic);
       }
       audioElements[ic] = document.createElement("audio");
-      var a = audioElements[ic];
-      a.id = ic;
-      a.za = vo.querySelector("div:nth-child(1)").querySelector("div");
-      a.zb = a.za.offsetWidth;
-      a.zc = vo.querySelector("div:nth-child(3)");
-      a.zd = vo.querySelector("div:nth-child(1)").offsetWidth - a.zb;
-      if (a.zd < 0) {
-        a.zd = 0;
+      var audio = audioElements[ic];
+      audio.id = ic;
+      audio.za = vo.querySelector("div:nth-child(1)").querySelector("div");
+      audio.zb = audio.za.offsetWidth;
+      audio.zc = vo.querySelector("div:nth-child(3)");
+      audio.zd = vo.querySelector("div:nth-child(1)").offsetWidth - audio.zb;
+      if (audio.zd < 0) {
+        audio.zd = 0;
       }
-      a.ze = vo.getAttribute("data-url");
-      a.zf = 0;
-      a.zg = 0;
-      a.zh = false;
-      a.zis = 0;
-      a.zj = false;
-      a.zk = false;
-      a.zl = false;
-      a.zm = false;
-      a.zn = false;
-      a.zo = false;
+      audio.ze = vo.getAttribute("data-url");
+      audio.zf = 0;
+      audio.zg = 0;
+      audio.zh = false;
+      audio.zis = 0;
+      audio.zj = false;
+      audio.zk = false;
+      audio.zl = false;
+      audio.zm = false;
+      audio.zn = false;
+      audio.zo = false;
       b[ib] = ic;
-      a.crossOrigin = "anonymous";
-      a.preload = "metadata";
+      audio.crossOrigin = "anonymous";
+      audio.preload = "metadata";
       if (vo.hasAttribute("data-loop")) {
-        a.loop = true;
+        audio.loop = true;
       }
       if (vo.hasAttribute("data-scratch")) {
-        a.zp = true;
+        audio.zp = true;
       } else {
-        a.zp = false;
+        audio.zp = false;
       }
       if (vo.hasAttribute("data-passive")) {
-        a.zq = true;
+        audio.zq = true;
       } else {
-        a.zq = false;
+        audio.zq = false;
       }
       if (vo.hasAttribute("data-autoplay")) {
         if (!autoplayInit) {
           autoplayInit = true;
-          a.autoplay = true;
-          a.preload = "auto";
-          c = a;
-          E(a);
+          audio.autoplay = true;
+          audio.preload = "auto";
+          c = audio;
+          E(audio);
         }
       }
       if (vo.hasAttribute("data-preload")) {
-        if (!a.autoplay) {
-          a.preload = "auto";
-          E(a);
+        if (!audio.autoplay) {
+          audio.preload = "auto";
+          E(audio);
         }
       }
-      a.za.onmousedown = (e) => {
+      audio.za.onmousedown = (e) => {
         if (!k) {
           po(e);
           window.addEventListener("mousemove", (e) => {
             po(e);
           });
-          Ba(a);
+          Ba(audio);
         }
       };
-      if (!a.zq) {
-        a.za.ontouchstart = (e) => {
+      if (!audio.zq) {
+        audio.za.ontouchstart = (e) => {
           e.preventDefault();
           e.stopPropagation();
           clearTimeout(l);
@@ -128,10 +128,10 @@ var Essential_Audio = (() => {
           window.addEventListener("touchmove", (e) => {
             po(e);
           });
-          Ba(a);
+          Ba(audio);
         };
       } else {
-        a.za.addEventListener(
+        audio.za.addEventListener(
           "touchstart",
           (e) => {
             e.stopPropagation();
@@ -141,12 +141,12 @@ var Essential_Audio = (() => {
             window.addEventListener("touchmove", (e) => {
               po(e);
             });
-            Ba(a);
+            Ba(audio);
           },
           ie ? { passive: true } : false
         );
       }
-      a.zc.onmousedown = (e) => {
+      audio.zc.onmousedown = (e) => {
         e.preventDefault();
         e.stopPropagation();
         if (!k) {
@@ -154,11 +154,11 @@ var Essential_Audio = (() => {
           window.addEventListener("mousemove", (e) => {
             po(e);
           });
-          Bb(a);
+          Bb(audio);
         }
       };
-      if (!a.zq) {
-        a.zc.ontouchstart = (e) => {
+      if (!audio.zq) {
+        audio.zc.ontouchstart = (e) => {
           e.preventDefault();
           e.stopPropagation();
           clearTimeout(l);
@@ -167,10 +167,10 @@ var Essential_Audio = (() => {
           window.addEventListener("touchmove", (e) => {
             po(e);
           });
-          Bb(a);
+          Bb(audio);
         };
       } else {
-        a.zc.addEventListener(
+        audio.zc.addEventListener(
           "touchstart",
           (e) => {
             e.stopPropagation();
@@ -180,43 +180,43 @@ var Essential_Audio = (() => {
             window.addEventListener("touchmove", (e) => {
               po(e);
             });
-            Bb(a);
+            Bb(audio);
           },
           ie ? { passive: true } : false
         );
       }
     });
   }
-  function Ba(a) {
-    a.zn = true;
+  function Ba(audio) {
+    audio.zn = true;
     h = j;
-    i = h - (a.za.getBoundingClientRect().left + window.scrollX);
+    i = h - (audio.za.getBoundingClientRect().left + window.scrollX);
     if (!k) {
       window.addEventListener("mousemove", Bc);
     } else {
-      a.te = setTimeout(function () {
+      audio.te = setTimeout(function () {
         window.addEventListener("touchmove", Bc);
-        clearTimeout(a.te);
+        clearTimeout(audio.te);
       }, 100);
     }
     function Bc() {
       if (h != j) {
         m = true;
-        if (a.zd > 0) {
-          a.za.classList.add("drag");
+        if (audio.zd > 0) {
+          audio.za.classList.add("drag");
         }
       }
-      if (m && a.zd > 0) {
+      if (m && audio.zd > 0) {
         o =
           j -
-          (a.za.parentNode.getBoundingClientRect().left + window.scrollX) -
+          (audio.za.parentNode.getBoundingClientRect().left + window.scrollX) -
           i;
-        a.zf = Math.min(Math.max(o, 0), a.zd);
-        a.za.style.left = a.zf + "px";
-        if (a.zp && a.zl) {
-          V(a);
-          if (a.paused && currentTime(a) != duration(a)) {
-            a.play();
+        audio.zf = Math.min(Math.max(o, 0), audio.zd);
+        audio.za.style.left = audio.zf + "px";
+        if (audio.zp && audio.zl) {
+          V(audio);
+          if (audio.paused && currentTime(audio) != duration(audio)) {
+            audio.play();
           }
         }
       }
@@ -227,7 +227,7 @@ var Essential_Audio = (() => {
       window.addEventListener("touchend", Bd);
     }
     function Bd() {
-      clearTimeout(a.te);
+      clearTimeout(audio.te);
       if (!k) {
         window.removeEventListener("mousemove", Bc);
         window.removeEventListener("mousemove", (e) => {
@@ -242,25 +242,29 @@ var Essential_Audio = (() => {
         window.removeEventListener("touchend", Bd);
       }
       if (m) {
-        if (duration(a) && a.zd > 0) {
-          if (!a.zp || !a.zl) {
-            V(a);
+        if (duration(audio) && audio.zd > 0) {
+          if (!audio.zp || !audio.zl) {
+            V(audio);
           }
-          if (a.zl && a.paused && currentTime(a) != duration(a)) {
-            a.play();
+          if (
+            audio.zl &&
+            audio.paused &&
+            currentTime(audio) != duration(audio)
+          ) {
+            audio.play();
           }
         }
         m = false;
-        a.za.classList.remove("drag");
+        audio.za.classList.remove("drag");
       } else {
-        if (c.id && c.id == a.id && a.zl) {
-          P(a);
+        if (c.id && c.id == audio.id && audio.zl) {
+          P(audio);
         }
-        if (!a.zj) {
-          C(a);
+        if (!audio.zj) {
+          C(audio);
         }
       }
-      a.zn = false;
+      audio.zn = false;
       if (k) {
         l = setTimeout(function () {
           k = false;
@@ -269,29 +273,29 @@ var Essential_Audio = (() => {
       }
     }
   }
-  function Bb(a) {
-    if (a.zd > 0) {
-      a.zn = true;
+  function Bb(audio) {
+    if (audio.zd > 0) {
+      audio.zn = true;
       h = j;
-      i = Math.floor(a.zb / 2);
+      i = Math.floor(audio.zb / 2);
       if (!k) {
         window.addEventListener("mousemove", Bf);
       } else {
-        a.te = setTimeout(function () {
+        audio.te = setTimeout(function () {
           window.addEventListener("touchmove", Bf);
-          clearTimeout(a.te);
+          clearTimeout(audio.te);
         }, 100);
       }
       function Bf() {
         m = true;
-        a.za.classList.add("drag");
-        o = j - a.za.parentNode.getBoundingClientRect().left - i;
-        a.zf = Math.min(Math.max(o, 0), a.zd);
-        a.za.style.left = a.zf + "px";
-        if (a.zp && a.zl) {
-          V(a);
-          if (a.paused && currentTime(a) != duration(a)) {
-            a.play();
+        audio.za.classList.add("drag");
+        o = j - audio.za.parentNode.getBoundingClientRect().left - i;
+        audio.zf = Math.min(Math.max(o, 0), audio.zd);
+        audio.za.style.left = audio.zf + "px";
+        if (audio.zp && audio.zl) {
+          V(audio);
+          if (audio.paused && currentTime(audio) != duration(audio)) {
+            audio.play();
           }
         }
       }
@@ -301,7 +305,7 @@ var Essential_Audio = (() => {
         window.addEventListener("touchend", Bg);
       }
       function Bg() {
-        clearTimeout(a.te);
+        clearTimeout(audio.te);
         if (!k) {
           window.removeEventListener("mousemove", Bf);
           window.removeEventListener("mousemove", (e) => {
@@ -316,28 +320,32 @@ var Essential_Audio = (() => {
           window.removeEventListener("touchend", Bg);
         }
         if (m) {
-          if (duration(a)) {
-            if (!a.zp || a.zl) {
-              V(a);
+          if (duration(audio)) {
+            if (!audio.zp || audio.zl) {
+              V(audio);
             }
-            if (a.zl && a.paused && currentTime(a) != duration(a)) {
-              a.play();
+            if (
+              audio.zl &&
+              audio.paused &&
+              currentTime(audio) != duration(audio)
+            ) {
+              audio.play();
             }
           }
           m = false;
-          a.za.classList.remove("drag");
+          audio.za.classList.remove("drag");
         } else {
-          p = j - a.za.parentNode.getBoundingClientRect().left - i;
-          a.zf = Math.min(Math.max(p, 0), a.zd);
-          a.za.style.left = a.zf + "px";
-          if (duration(a)) {
-            V(a);
-            if (a.zl) {
-              a.play();
+          p = j - audio.za.parentNode.getBoundingClientRect().left - i;
+          audio.zf = Math.min(Math.max(p, 0), audio.zd);
+          audio.za.style.left = audio.zf + "px";
+          if (duration(audio)) {
+            V(audio);
+            if (audio.zl) {
+              audio.play();
             }
           }
         }
-        a.zn = false;
+        audio.zn = false;
         if (k) {
           l = setTimeout(function () {
             k = false;
@@ -347,200 +355,203 @@ var Essential_Audio = (() => {
       }
     }
   }
-  function C(a) {
+  function C(audio) {
     if (c) {
-      if (a.id == c.id) {
+      if (audio.id == c.id) {
         stop();
         return;
       } else {
         stop();
       }
     }
-    c = a;
-    if (duration(a)) {
-      O(a);
+    c = audio;
+    if (duration(audio)) {
+      O(audio);
     } else {
-      if (!a.zh) {
-        E(a);
+      if (!audio.zh) {
+        E(audio);
       }
     }
   }
-  function D(a, vn) {
-    a.za.setAttribute("class", "");
-    a.za.classList.add(vn);
+  function D(audio, vn) {
+    audio.za.setAttribute("class", "");
+    audio.za.classList.add(vn);
   }
-  function E(a) {
-    D(a, "load");
-    a.zh = true;
-    a.zk = true;
-    a.onplay = () => {
-      if (!a.zk) {
-        clearTimeout(a.td);
-        D(a, "play");
+  function E(audio) {
+    D(audio, "load");
+    audio.zh = true;
+    audio.zk = true;
+    audio.onplay = () => {
+      if (!audio.zk) {
+        clearTimeout(audio.td);
+        D(audio, "play");
       }
-      if (a.id == d.id) {
-        c = a;
+      if (audio.id == d.id) {
+        c = audio;
         d = false;
-        a.zl = true;
-        if (a.zd > 0) {
-          a.tc = setInterval(Q, 50, a);
+        audio.zl = true;
+        if (audio.zd > 0) {
+          audio.tc = setInterval(Q, 50, audio);
         }
       }
     };
-    a.onplaying = () => {
-      clearTimeout(a.td);
-      D(a, "play");
+    audio.onplaying = () => {
+      clearTimeout(audio.td);
+      D(audio, "play");
     };
-    a.onwaiting = () => {
-      a.td = setTimeout(() => {
-        D(a, "load");
+    audio.onwaiting = () => {
+      audio.td = setTimeout(() => {
+        D(audio, "load");
       }, 50);
     };
-    a.onpause = () => {
-      if (!a.zk && !a.zn && !a.ended) {
-        D(a, "off");
+    audio.onpause = () => {
+      if (!audio.zk && !audio.zn && !audio.ended) {
+        D(audio, "off");
       }
-      if (a.zl && !a.zk && !a.ended) {
+      if (audio.zl && !audio.zk && !audio.ended) {
         stop();
       }
     };
-    a.onended = () => {
-      if (a.zd == 0 && !a.loop) {
+    audio.onended = () => {
+      if (audio.zd == 0 && !audio.loop) {
         stop(0);
       }
     };
-    a.onseeking = () => {
-      if (a.id == d.id) {
-        P(a);
+    audio.onseeking = () => {
+      if (audio.id == d.id) {
+        P(audio);
       }
     };
-    a.onseeked = () => {
-      if (a.id == d.id) {
-        P(a);
+    audio.onseeked = () => {
+      if (audio.id == d.id) {
+        P(audio);
       }
     };
-    a.onloadedmetadata = () => {
-      a.onloadedmetadata = null;
-      J(a);
+    audio.onloadedmetadata = () => {
+      audio.onloadedmetadata = null;
+      J(audio);
     };
-    a.onprogress = () => {
-      a.onprogress = null;
-      a.playAnimationInterval = setInterval(updatePlayProgress, 500, a);
-      a.zo = true;
+    audio.onprogress = () => {
+      audio.onprogress = null;
+      audio.playAnimationInterval = setInterval(updatePlayProgress, 500, audio);
+      audio.zo = true;
     };
-    var va = a.ze.split(",");
+    var va = audio.ze.split(",");
     var vb = true;
     for (var i = 0; i < va.length; i++) {
       va[i] = va[i].trim();
       if (va[i] != "") {
-        G(a, va[i], i + 1);
+        G(audio, va[i], i + 1);
         vb = false;
       }
     }
     if (vb) {
-      H(a);
+      H(audio);
     }
   }
-  function G(a, file_url, vc) {
-    var vd = a.id + "_" + vc;
-    a.innerHTML +=
+  function G(audio, file_url, vc) {
+    var vd = audio.id + "_" + vc;
+    audio.innerHTML +=
       '<source id="' + vd + '" src="' + file_url + '" crossorigin="anonymous">';
   }
-  function H(a) {
-    a.zh = false;
-    a.zm = false;
-    a.zl = false;
-    a.zj = true;
-    D(a, "error");
-    if (a.id == c.id) {
+  function H(audio) {
+    audio.zh = false;
+    audio.zm = false;
+    audio.zl = false;
+    audio.zj = true;
+    D(audio, "error");
+    if (audio.id == c.id) {
       c = false;
     }
   }
-  function J(a) {
-    if (a.preload == "auto") {
+  function J(audio) {
+    if (audio.preload == "auto") {
       if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
-        a.preload = "metadata";
+        audio.preload = "metadata";
       }
-      var vf = a.play();
+      var vf = audio.play();
       if (vf !== undefined) {
         vf.then(() => {
-          if (a.autoplay) {
-            M(a);
+          if (audio.autoplay) {
+            M(audio);
           } else {
-            K(a);
+            K(audio);
           }
         }).catch((error) => {
-          K(a);
+          K(audio);
         });
       }
     } else {
-      if (a.readyState > 2) {
-        M(a);
+      if (audio.readyState > 2) {
+        M(audio);
       } else {
-        V(a);
-        if (a.zf == a.zd) {
-          T(a);
+        V(audio);
+        if (audio.zf == audio.zd) {
+          T(audio);
         }
-        a.tb = setInterval(L, 250, a);
+        audio.tb = setInterval(L, 250, audio);
       }
     }
   }
-  function K(a) {
-    a.pause();
-    D(a, "off");
-    a.currentTime = 0;
-    a.zf = 0;
-    a.zk = false;
-    if (a.autoplay && c) {
-      if (a.id == c.id) {
+  function K(audio) {
+    audio.pause();
+    D(audio, "off");
+    audio.currentTime = 0;
+    audio.zf = 0;
+    audio.zk = false;
+    if (audio.autoplay && c) {
+      if (audio.id == c.id) {
         d = c;
         c = false;
       }
     }
   }
-  function L(a) {
-    V(a);
+  function L(audio) {
+    V(audio);
     var vg = 0;
-    for (var i = 0; i < buffered(a).length; i++) {
-      if (buffered(a).start(buffered(a).length - 1 - i) <= currentTime(a)) {
-        vg = buffered(a).end(buffered(a).length - 1 - i);
+    for (var i = 0; i < buffered(audio).length; i++) {
+      if (
+        buffered(audio).start(buffered(audio).length - 1 - i) <=
+        currentTime(audio)
+      ) {
+        vg = buffered(audio).end(buffered(audio).length - 1 - i);
         break;
       }
     }
-    if (vg >= currentTime(a)) {
-      clearInterval(a.tb);
-      M(a);
+    if (vg >= currentTime(audio)) {
+      clearInterval(audio.tb);
+      M(audio);
     }
   }
-  function M(a) {
-    a.zh = false;
-    a.zk = false;
-    if (!a.zl) {
-      if (!a.zm) {
-        O(a);
+  function M(audio) {
+    audio.zh = false;
+    audio.zk = false;
+    if (!audio.zl) {
+      if (!audio.zm) {
+        O(audio);
       }
     } else {
-      stop(a);
+      stop(audio);
     }
   }
-  function O(a) {
-    if (currentTime(a) == duration(a)) {
-      T(a);
+  function O(audio) {
+    if (currentTime(audio) == duration(audio)) {
+      T(audio);
     }
-    V(a);
+    V(audio);
     d = false;
-    a.zl = true;
-    if (a.zd > 0) {
-      a.tc = setInterval(Q, 50, a);
+    audio.zl = true;
+    if (audio.zd > 0) {
+      audio.tc = setInterval(Q, 50, audio);
     }
-    a.play();
+    audio.play();
     var vp = setTimeout(function () {
-      if (a.zl && a.paused) {
+      if (audio.zl && audio.paused) {
         stop();
       }
       clearTimeout(vp);
     }, 25);
-    D(a, "play");
+    D(audio, "play");
   }
   function play(vo) {
     if (!vo) {
@@ -550,26 +561,26 @@ var Essential_Audio = (() => {
         vo = b[0];
       }
     }
-    var a = audioElements[vo];
-    if (!a.zl) {
-      C(a);
+    var audio = audioElements[vo];
+    if (!audio.zl) {
+      C(audio);
     }
   }
-  function Q(a) {
-    if (!a.zn) {
-      P(a);
-      if (currentTime(a) == duration(a)) {
-        if (a.loop) {
-          T(a);
+  function Q(audio) {
+    if (!audio.zn) {
+      P(audio);
+      if (currentTime(audio) == duration(audio)) {
+        if (audio.loop) {
+          T(audio);
         } else {
           stop(0);
         }
       }
     }
   }
-  function P(a) {
-    a.zf = Math.round((currentTime(a) * a.zd) / duration(a));
-    a.za.style.left = a.zf + "px";
+  function P(audio) {
+    audio.zf = Math.round((currentTime(audio) * audio.zd) / duration(audio));
+    audio.za.style.left = audio.zf + "px";
   }
   function stop(vm) {
     if (c) {
@@ -589,12 +600,12 @@ var Essential_Audio = (() => {
       c = false;
     }
   }
-  function T(a) {
-    if (duration(a)) {
-      a.currentTime = 0;
+  function T(audio) {
+    if (duration(audio)) {
+      audio.currentTime = 0;
     }
-    a.zf = 0;
-    a.za.style.left = 0 + "px";
+    audio.zf = 0;
+    audio.za.style.left = 0 + "px";
   }
   function reset(vo) {
     if (!vo) {
@@ -604,62 +615,65 @@ var Essential_Audio = (() => {
         vo = b[0];
       }
     }
-    var a = audioElements[vo];
-    T(a);
+    T(audioElements[vo]);
   }
-  function updatePlayProgress(a) {
-    if (duration(a)) {
+  function updatePlayProgress(audio) {
+    if (duration(audio)) {
       var vh;
-      if (a.zd == 0) {
+      if (audio.zd == 0) {
         vh = 0;
       } else {
-        vh = Math.round((a.zf / a.zd) * duration(a) * 100) / 100;
+        vh = Math.round((audio.zf / audio.zd) * duration(audio) * 100) / 100;
       }
       var vi = 0;
-      for (var i = 0; i < buffered(a).length; i++) {
-        if (buffered(a).start(buffered(a).length - 1 - i) <= vh) {
-          vi = buffered(a).end(buffered(a).length - 1 - i);
+      for (var i = 0; i < buffered(audio).length; i++) {
+        if (buffered(audio).start(buffered(audio).length - 1 - i) <= vh) {
+          vi = buffered(audio).end(buffered(audio).length - 1 - i);
           break;
         }
       }
-      a.zg = Math.round((vi / duration(a)) * 100);
-      a.za.parentNode.parentNode
+      audio.zg = Math.round((vi / duration(audio)) * 100);
+      audio.za.parentNode.parentNode
         .querySelector("div:nth-child(2)")
-        .querySelector("div").style.width = a.zg + "%";
-      if (a.zg == 100) {
-        clearInterval(a.playAnimationInterval);
-        a.zo = false;
+        .querySelector("div").style.width = audio.zg + "%";
+      if (audio.zg == 100) {
+        clearInterval(audio.playAnimationInterval);
+        audio.zo = false;
       }
     }
   }
-  function V(a) {
-    if (a.zd > 0) {
-      a.currentTime = (a.zf / a.zd) * duration(a);
+  function V(audio) {
+    if (audio.zd > 0) {
+      audio.currentTime = (audio.zf / audio.zd) * duration(audio);
     }
   }
   function onResize() {
     var vj = document.querySelectorAll("div.essential_audio");
     vj.forEach((vo) => {
       var vk = vo.getAttribute("id");
-      var a = audioElements[vk];
-      if (a.zo) {
-        clearInterval(a.playAnimationInterval);
+      var audio = audioElements[vk];
+      if (audio.zo) {
+        clearInterval(audio.playAnimationInterval);
       }
-      a.zb = a.za.offsetWidth;
-      var vl = vo.querySelector("div:nth-child(1)").offsetWidth - a.zb;
+      audio.zb = audio.za.offsetWidth;
+      var vl = vo.querySelector("div:nth-child(1)").offsetWidth - audio.zb;
       if (vl < 0) {
         vl = 0;
       }
-      if (a.za.offsetLeft > 0 && vk != c.id) {
-        a.zf = Math.round((a.za.offsetLeft / a.zd) * vl);
-        a.za.style.left = a.zf + "px";
+      if (audio.za.offsetLeft > 0 && vk != c.id) {
+        audio.zf = Math.round((audio.za.offsetLeft / audio.zd) * vl);
+        audio.za.style.left = audio.zf + "px";
       }
-      a.zd = vl;
-      if (duration(a) && !a.zl) {
-        V(a);
+      audio.zd = vl;
+      if (duration(audio) && !audio.zl) {
+        V(audio);
       }
-      if (a.zo) {
-        a.playAnimationInterval = setInterval(updatePlayProgress, 500, a);
+      if (audio.zo) {
+        audio.playAnimationInterval = setInterval(
+          updatePlayProgress,
+          500,
+          audio
+        );
       }
     });
   }
