@@ -350,10 +350,10 @@ var Essential_Audio = (() => {
   function C(a) {
     if (c) {
       if (a.id == c.id) {
-        R();
+        stop();
         return;
       } else {
-        R();
+        stop();
       }
     }
     c = a;
@@ -401,12 +401,12 @@ var Essential_Audio = (() => {
         D(a, "off");
       }
       if (a.zl && !a.zk && !a.ended) {
-        R();
+        stop();
       }
     };
     a.onended = () => {
       if (a.zd == 0 && !a.loop) {
-        R(0);
+        stop(0);
       }
     };
     a.onseeking = () => {
@@ -520,7 +520,7 @@ var Essential_Audio = (() => {
         O(a);
       }
     } else {
-      R(a);
+      stop(a);
     }
   }
   function O(a) {
@@ -536,13 +536,13 @@ var Essential_Audio = (() => {
     a.play();
     var vp = setTimeout(function () {
       if (a.zl && a.paused) {
-        R();
+        stop();
       }
       clearTimeout(vp);
     }, 25);
     D(a, "play");
   }
-  function N(vo) {
+  function play(vo) {
     if (!vo) {
       if (d) {
         vo = d.id;
@@ -562,7 +562,7 @@ var Essential_Audio = (() => {
         if (a.loop) {
           T(a);
         } else {
-          R(0);
+          stop(0);
         }
       }
     }
@@ -571,7 +571,7 @@ var Essential_Audio = (() => {
     a.zf = Math.round((currentTime(a) * a.zd) / duration(a));
     a.za.style.left = a.zf + "px";
   }
-  function R(vm) {
+  function stop(vm) {
     if (c) {
       clearInterval(c["tc"]);
       c.zm = true;
@@ -596,7 +596,7 @@ var Essential_Audio = (() => {
     a.zf = 0;
     a.za.style.left = 0 + "px";
   }
-  function S(vo) {
+  function reset(vo) {
     if (!vo) {
       if (d) {
         vo = d.id;
@@ -667,24 +667,24 @@ var Essential_Audio = (() => {
   return {
     init: init,
     Audio: audioElements,
-    Play: N,
-    Stop: R,
-    Reset: S,
-    players: Xa,
-    active: Xb,
-    last: Xc,
+    Play: play,
+    Stop: stop,
+    Reset: reset,
+    players: players,
+    active: active,
+    last: last,
   };
-  function Xa() {
+  function players() {
     return b;
   }
-  function Xb() {
+  function active() {
     if (c) {
       return c.id;
     } else {
       return false;
     }
   }
-  function Xc() {
+  function last() {
     if (d) {
       return d.id;
     } else {
