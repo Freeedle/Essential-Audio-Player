@@ -46,30 +46,32 @@ var Essential_Audio = (() => {
     document.removeEventListener("ig", null, ig);
   } catch (e) {}
   function setupPlayers() {
-    var rootDiv = document.querySelectorAll("div.essential_audio");
-    rootDiv.forEach((vo, ib) => {
-      vo.innerHTML =
+    var rootDivs = document.querySelectorAll("div.essential_audio");
+    rootDivs.forEach((rootDiv, index) => {
+      rootDiv.innerHTML =
         '<div><div class="off"><!----></div></div><div><div><!----></div></div><div><!----></div>';
-      var ic;
-      if (vo.hasAttribute("id")) {
-        ic = vo.getAttribute("id");
+      var id;
+      if (rootDiv.hasAttribute("id")) {
+        id = rootDiv.getAttribute("id");
       } else {
-        ic = "EAP_" + (ib + 1);
-        vo.setAttribute("id", ic);
+        id = "EAP_" + (index + 1);
+        rootDiv.setAttribute("id", id);
       }
-      audioElements[ic] = document.createElement("audio");
-      var audio = audioElements[ic];
-      audio.id = ic;
-      audio.playhead = vo
+      audioElements[id] = document.createElement("audio");
+      var audio = audioElements[id];
+      audio.id = id;
+      audio.playhead = rootDiv
         .querySelector("div:nth-child(1)")
         .querySelector("div");
-      audio.zb = audio.playhead.offsetWidth;
-      audio.zc = vo.querySelector("div:nth-child(3)");
-      audio.zd = vo.querySelector("div:nth-child(1)").offsetWidth - audio.zb;
+      audio.playheadWidth = audio.playhead.offsetWidth;
+      audio.zc = rootDiv.querySelector("div:nth-child(3)");
+      audio.zd =
+        rootDiv.querySelector("div:nth-child(1)").offsetWidth -
+        audio.playheadWidth;
       if (audio.zd < 0) {
         audio.zd = 0;
       }
-      audio.ze = vo.getAttribute("data-url");
+      audio.sources = rootDiv.getAttribute("data-url");
       audio.zf = 0;
       audio.zg = 0;
       audio.zh = false;
@@ -80,23 +82,23 @@ var Essential_Audio = (() => {
       audio.zm = false;
       audio.zn = false;
       audio.zo = false;
-      b[ib] = ic;
+      b[index] = id;
       audio.crossOrigin = "anonymous";
       audio.preload = "metadata";
-      if (vo.hasAttribute("data-loop")) {
+      if (rootDiv.hasAttribute("data-loop")) {
         audio.loop = true;
       }
-      if (vo.hasAttribute("data-scratch")) {
+      if (rootDiv.hasAttribute("data-scratch")) {
         audio.zp = true;
       } else {
         audio.zp = false;
       }
-      if (vo.hasAttribute("data-passive")) {
+      if (rootDiv.hasAttribute("data-passive")) {
         audio.zq = true;
       } else {
         audio.zq = false;
       }
-      if (vo.hasAttribute("data-autoplay")) {
+      if (rootDiv.hasAttribute("data-autoplay")) {
         if (!autoplayInit) {
           autoplayInit = true;
           audio.autoplay = true;
@@ -105,7 +107,7 @@ var Essential_Audio = (() => {
           E(audio);
         }
       }
-      if (vo.hasAttribute("data-preload")) {
+      if (rootDiv.hasAttribute("data-preload")) {
         if (!audio.autoplay) {
           audio.preload = "auto";
           E(audio);
@@ -280,7 +282,7 @@ var Essential_Audio = (() => {
     if (audio.zd > 0) {
       audio.zn = true;
       h = j;
-      i = Math.floor(audio.zb / 2);
+      i = Math.floor(audio.playheadWidth / 2);
       if (!k) {
         window.addEventListener("mousemove", Bf);
       } else {
@@ -437,7 +439,7 @@ var Essential_Audio = (() => {
       audio.playAnimationInterval = setInterval(updatePlayProgress, 500, audio);
       audio.zo = true;
     };
-    var va = audio.ze.split(",");
+    var va = audio.sources.split(",");
     var vb = true;
     for (var i = 0; i < va.length; i++) {
       va[i] = va[i].trim();
@@ -447,7 +449,7 @@ var Essential_Audio = (() => {
       }
     }
     if (vb) {
-      H(audio);
+      handleLoadFailed(audio);
     }
   }
   function G(audio, file_url, vc) {
@@ -455,7 +457,7 @@ var Essential_Audio = (() => {
     audio.innerHTML +=
       '<source id="' + vd + '" src="' + file_url + '" crossorigin="anonymous">';
   }
-  function H(audio) {
+  function handleLoadFailed(audio) {
     audio.zh = false;
     audio.zm = false;
     audio.zl = false;
@@ -656,8 +658,9 @@ var Essential_Audio = (() => {
       if (audio.zo) {
         clearInterval(audio.playAnimationInterval);
       }
-      audio.zb = audio.playhead.offsetWidth;
-      var vl = vo.querySelector("div:nth-child(1)").offsetWidth - audio.zb;
+      audio.playheadWidth = audio.playhead.offsetWidth;
+      var vl =
+        vo.querySelector("div:nth-child(1)").offsetWidth - audio.playheadWidth;
       if (vl < 0) {
         vl = 0;
       }
