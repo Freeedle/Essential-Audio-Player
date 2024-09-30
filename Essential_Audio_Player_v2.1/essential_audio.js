@@ -5,7 +5,7 @@ var Essential_Audio = (() => {
   var b = [];
   var c = false;
   var d = false;
-  var g = 0;
+  var autoplayInit = false;
   var h;
   var i;
   var j;
@@ -105,8 +105,8 @@ var Essential_Audio = (() => {
         a.zq = false;
       }
       if (vo.hasAttribute("data-autoplay")) {
-        if (g < 1) {
-          g = 1;
+        if (!autoplayInit) {
+          autoplayInit = true;
           a.autoplay = true;
           a.preload = "auto";
           c = a;
