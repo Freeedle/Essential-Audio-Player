@@ -440,15 +440,15 @@ var Essential_Audio = (() => {
       audio.zo = true;
     };
     var sources = audio.sources.split(",");
-    var vb = true;
+    var audioHasValidSource = false;
     for (var i = 0; i < sources.length; i++) {
       sources[i] = sources[i].trim();
       if (sources[i] != "") {
         G(audio, sources[i], i + 1);
-        vb = false;
+        audioHasValidSource = true;
       }
     }
-    if (vb) {
+    if (!audioHasValidSource) {
       handleLoadFailed(audio);
     }
   }
