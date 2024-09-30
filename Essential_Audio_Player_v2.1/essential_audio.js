@@ -425,7 +425,7 @@ var Essential_Audio = (() => {
     };
     a.onprogress = () => {
       a.onprogress = null;
-      a.ta = setInterval(U, 500, a);
+      a.playAnimationInterval = setInterval(updatePlayProgress, 500, a);
       a.zo = true;
     };
     var va = a.ze.split(",");
@@ -607,7 +607,7 @@ var Essential_Audio = (() => {
     var a = audioElements[vo];
     T(a);
   }
-  function U(a) {
+  function updatePlayProgress(a) {
     if (duration(a)) {
       var vh;
       if (a.zd == 0) {
@@ -627,7 +627,7 @@ var Essential_Audio = (() => {
         .querySelector("div:nth-child(2)")
         .querySelector("div").style.width = a.zg + "%";
       if (a.zg == 100) {
-        clearInterval(a.ta);
+        clearInterval(a.playAnimationInterval);
         a.zo = false;
       }
     }
@@ -643,7 +643,7 @@ var Essential_Audio = (() => {
       var vk = vo.getAttribute("id");
       var a = audioElements[vk];
       if (a.zo) {
-        clearInterval(a.ta);
+        clearInterval(a.playAnimationInterval);
       }
       a.zb = a.za.offsetWidth;
       var vl = vo.querySelector("div:nth-child(1)").offsetWidth - a.zb;
@@ -659,7 +659,7 @@ var Essential_Audio = (() => {
         V(a);
       }
       if (a.zo) {
-        a.ta = setInterval(U, 500, a);
+        a.playAnimationInterval = setInterval(updatePlayProgress, 500, a);
       }
     });
   }
