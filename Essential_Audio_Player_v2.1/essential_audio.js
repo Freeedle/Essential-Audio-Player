@@ -14,13 +14,6 @@ var Essential_Audio = (() => {
   var m = false;
   var o;
   var p;
-  var q = 50;
-  var pa = "div.essential_audio";
-  var pb = "div:nth-child(1)";
-  var pf = "mousemove";
-  var pg = "touchmove";
-  var ph = "mouseup";
-  var pj = "touchend";
   var pl = (a) => {
     return a.duration;
   };
@@ -56,7 +49,7 @@ var Essential_Audio = (() => {
     document.removeEventListener("ig", null, ig);
   } catch (e) {}
   function B() {
-    var ia = document.querySelectorAll(pa);
+    var ia = document.querySelectorAll("div.essential_audio");
     ia.forEach((vo, ib) => {
       vo.innerHTML =
         '<div><div class="off"><!----></div></div><div><div><!----></div></div><div><!----></div>';
@@ -70,10 +63,10 @@ var Essential_Audio = (() => {
       A[ic] = document.createElement("audio");
       var a = A[ic];
       a.id = ic;
-      a.za = vo.querySelector(pb).querySelector("div");
+      a.za = vo.querySelector("div:nth-child(1)").querySelector("div");
       a.zb = a.za.offsetWidth;
       a.zc = vo.querySelector("div:nth-child(3)");
-      a.zd = vo.querySelector(pb).offsetWidth - a.zb;
+      a.zd = vo.querySelector("div:nth-child(1)").offsetWidth - a.zb;
       if (a.zd < 0) {
         a.zd = 0;
       }
@@ -122,7 +115,7 @@ var Essential_Audio = (() => {
       a.za.onmousedown = (e) => {
         if (!k) {
           po(e);
-          window.addEventListener(pf, (e) => {
+          window.addEventListener("mousemove", (e) => {
             po(e);
           });
           Ba(a);
@@ -135,7 +128,7 @@ var Essential_Audio = (() => {
           clearTimeout(l);
           k = true;
           po(e);
-          window.addEventListener(pg, (e) => {
+          window.addEventListener("touchmove", (e) => {
             po(e);
           });
           Ba(a);
@@ -148,7 +141,7 @@ var Essential_Audio = (() => {
             clearTimeout(l);
             k = true;
             po(e);
-            window.addEventListener(pg, (e) => {
+            window.addEventListener("touchmove", (e) => {
               po(e);
             });
             Ba(a);
@@ -161,7 +154,7 @@ var Essential_Audio = (() => {
         e.stopPropagation();
         if (!k) {
           po(e);
-          window.addEventListener(pf, (e) => {
+          window.addEventListener("mousemove", (e) => {
             po(e);
           });
           Bb(a);
@@ -174,7 +167,7 @@ var Essential_Audio = (() => {
           clearTimeout(l);
           k = true;
           po(e);
-          window.addEventListener(pg, (e) => {
+          window.addEventListener("touchmove", (e) => {
             po(e);
           });
           Bb(a);
@@ -187,7 +180,7 @@ var Essential_Audio = (() => {
             clearTimeout(l);
             k = true;
             po(e);
-            window.addEventListener(pg, (e) => {
+            window.addEventListener("touchmove", (e) => {
               po(e);
             });
             Bb(a);
@@ -202,10 +195,10 @@ var Essential_Audio = (() => {
     h = j;
     i = h - (a.za.getBoundingClientRect().left + window.scrollX);
     if (!k) {
-      window.addEventListener(pf, Bc);
+      window.addEventListener("mousemove", Bc);
     } else {
       a.te = setTimeout(function () {
-        window.addEventListener(pg, Bc);
+        window.addEventListener("touchmove", Bc);
         clearTimeout(a.te);
       }, 100);
     }
@@ -232,24 +225,24 @@ var Essential_Audio = (() => {
       }
     }
     if (!k) {
-      window.addEventListener(ph, Bd);
+      window.addEventListener("mouseup", Bd);
     } else {
-      window.addEventListener(pj, Bd);
+      window.addEventListener("touchend", Bd);
     }
     function Bd() {
       clearTimeout(a.te);
       if (!k) {
-        window.removeEventListener(pf, Bc);
-        window.removeEventListener(pf, (e) => {
+        window.removeEventListener("mousemove", Bc);
+        window.removeEventListener("mousemove", (e) => {
           po(e);
         });
-        window.removeEventListener(ph, Bd);
+        window.removeEventListener("mouseup", Bd);
       } else {
-        window.removeEventListener(pg, Bc);
-        window.removeEventListener(pg, (e) => {
+        window.removeEventListener("touchmove", Bc);
+        window.removeEventListener("touchmove", (e) => {
           po(e);
         });
-        window.removeEventListener(pj, Bd);
+        window.removeEventListener("touchend", Bd);
       }
       if (m) {
         if (pl(a) && a.zd > 0) {
@@ -285,10 +278,10 @@ var Essential_Audio = (() => {
       h = j;
       i = Math.floor(a.zb / 2);
       if (!k) {
-        window.addEventListener(pf, Bf);
+        window.addEventListener("mousemove", Bf);
       } else {
         a.te = setTimeout(function () {
-          window.addEventListener(pg, Bf);
+          window.addEventListener("touchmove", Bf);
           clearTimeout(a.te);
         }, 100);
       }
@@ -306,24 +299,24 @@ var Essential_Audio = (() => {
         }
       }
       if (!k) {
-        window.addEventListener(ph, Bg);
+        window.addEventListener("mouseup", Bg);
       } else {
-        window.addEventListener(pj, Bg);
+        window.addEventListener("touchend", Bg);
       }
       function Bg() {
         clearTimeout(a.te);
         if (!k) {
-          window.removeEventListener(pf, Bf);
-          window.removeEventListener(pf, (e) => {
+          window.removeEventListener("mousemove", Bf);
+          window.removeEventListener("mousemove", (e) => {
             po(e);
           });
-          window.removeEventListener(ph, Bg);
+          window.removeEventListener("mouseup", Bg);
         } else {
-          window.removeEventListener(pg, Bf);
-          window.removeEventListener(pg, (e) => {
+          window.removeEventListener("touchmove", Bf);
+          window.removeEventListener("touchmove", (e) => {
             po(e);
           });
-          window.removeEventListener(pj, Bg);
+          window.removeEventListener("touchend", Bg);
         }
         if (m) {
           if (pl(a)) {
@@ -393,7 +386,7 @@ var Essential_Audio = (() => {
         d = false;
         a.zl = true;
         if (a.zd > 0) {
-          a.tc = setInterval(Q, q, a);
+          a.tc = setInterval(Q, 50, a);
         }
       }
     };
@@ -541,7 +534,7 @@ var Essential_Audio = (() => {
     d = false;
     a.zl = true;
     if (a.zd > 0) {
-      a.tc = setInterval(Q, q, a);
+      a.tc = setInterval(Q, 50, a);
     }
     a.play();
     var vp = setTimeout(function () {
@@ -648,7 +641,7 @@ var Essential_Audio = (() => {
     }
   }
   function W() {
-    var vj = document.querySelectorAll(pa);
+    var vj = document.querySelectorAll("div.essential_audio");
     vj.forEach((vo) => {
       var vk = vo.getAttribute("id");
       var a = A[vk];
@@ -656,7 +649,7 @@ var Essential_Audio = (() => {
         clearInterval(a.ta);
       }
       a.zb = a.za.offsetWidth;
-      var vl = vo.querySelector(pb).offsetWidth - a.zb;
+      var vl = vo.querySelector("div:nth-child(1)").offsetWidth - a.zb;
       if (vl < 0) {
         vl = 0;
       }
