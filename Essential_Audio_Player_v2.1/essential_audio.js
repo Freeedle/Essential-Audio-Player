@@ -60,8 +60,10 @@ var Essential_Audio = (() => {
       audioElements[ic] = document.createElement("audio");
       var audio = audioElements[ic];
       audio.id = ic;
-      audio.za = vo.querySelector("div:nth-child(1)").querySelector("div");
-      audio.zb = audio.za.offsetWidth;
+      audio.playhead = vo
+        .querySelector("div:nth-child(1)")
+        .querySelector("div");
+      audio.zb = audio.playhead.offsetWidth;
       audio.zc = vo.querySelector("div:nth-child(3)");
       audio.zd = vo.querySelector("div:nth-child(1)").offsetWidth - audio.zb;
       if (audio.zd < 0) {
@@ -109,7 +111,7 @@ var Essential_Audio = (() => {
           E(audio);
         }
       }
-      audio.za.onmousedown = (e) => {
+      audio.playhead.onmousedown = (e) => {
         if (!k) {
           po(e);
           window.addEventListener("mousemove", (e) => {
@@ -119,7 +121,7 @@ var Essential_Audio = (() => {
         }
       };
       if (!audio.zq) {
-        audio.za.ontouchstart = (e) => {
+        audio.playhead.ontouchstart = (e) => {
           e.preventDefault();
           e.stopPropagation();
           clearTimeout(l);
@@ -131,7 +133,7 @@ var Essential_Audio = (() => {
           Ba(audio);
         };
       } else {
-        audio.za.addEventListener(
+        audio.playhead.addEventListener(
           "touchstart",
           (e) => {
             e.stopPropagation();
@@ -190,7 +192,7 @@ var Essential_Audio = (() => {
   function Ba(audio) {
     audio.zn = true;
     h = j;
-    i = h - (audio.za.getBoundingClientRect().left + window.scrollX);
+    i = h - (audio.playhead.getBoundingClientRect().left + window.scrollX);
     if (!k) {
       window.addEventListener("mousemove", Bc);
     } else {
@@ -203,16 +205,17 @@ var Essential_Audio = (() => {
       if (h != j) {
         m = true;
         if (audio.zd > 0) {
-          audio.za.classList.add("drag");
+          audio.playhead.classList.add("drag");
         }
       }
       if (m && audio.zd > 0) {
         o =
           j -
-          (audio.za.parentNode.getBoundingClientRect().left + window.scrollX) -
+          (audio.playhead.parentNode.getBoundingClientRect().left +
+            window.scrollX) -
           i;
         audio.zf = Math.min(Math.max(o, 0), audio.zd);
-        audio.za.style.left = audio.zf + "px";
+        audio.playhead.style.left = audio.zf + "px";
         if (audio.zp && audio.zl) {
           V(audio);
           if (audio.paused && currentTime(audio) != duration(audio)) {
@@ -255,7 +258,7 @@ var Essential_Audio = (() => {
           }
         }
         m = false;
-        audio.za.classList.remove("drag");
+        audio.playhead.classList.remove("drag");
       } else {
         if (currentAudio.id && currentAudio.id == audio.id && audio.zl) {
           P(audio);
@@ -288,10 +291,10 @@ var Essential_Audio = (() => {
       }
       function Bf() {
         m = true;
-        audio.za.classList.add("drag");
-        o = j - audio.za.parentNode.getBoundingClientRect().left - i;
+        audio.playhead.classList.add("drag");
+        o = j - audio.playhead.parentNode.getBoundingClientRect().left - i;
         audio.zf = Math.min(Math.max(o, 0), audio.zd);
-        audio.za.style.left = audio.zf + "px";
+        audio.playhead.style.left = audio.zf + "px";
         if (audio.zp && audio.zl) {
           V(audio);
           if (audio.paused && currentTime(audio) != duration(audio)) {
@@ -333,11 +336,11 @@ var Essential_Audio = (() => {
             }
           }
           m = false;
-          audio.za.classList.remove("drag");
+          audio.playhead.classList.remove("drag");
         } else {
-          p = j - audio.za.parentNode.getBoundingClientRect().left - i;
+          p = j - audio.playhead.parentNode.getBoundingClientRect().left - i;
           audio.zf = Math.min(Math.max(p, 0), audio.zd);
-          audio.za.style.left = audio.zf + "px";
+          audio.playhead.style.left = audio.zf + "px";
           if (duration(audio)) {
             V(audio);
             if (audio.zl) {
@@ -372,8 +375,8 @@ var Essential_Audio = (() => {
     }
   }
   function applyClassToPlayhead(audio, vn) {
-    audio.za.setAttribute("class", "");
-    audio.za.classList.add(vn);
+    audio.playhead.setAttribute("class", "");
+    audio.playhead.classList.add(vn);
   }
   function E(audio) {
     applyClassToPlayhead(audio, "load");
@@ -578,7 +581,7 @@ var Essential_Audio = (() => {
   }
   function P(audio) {
     audio.zf = Math.round((currentTime(audio) * audio.zd) / duration(audio));
-    audio.za.style.left = audio.zf + "px";
+    audio.playhead.style.left = audio.zf + "px";
   }
   function stop(vm) {
     if (currentAudio) {
@@ -590,7 +593,7 @@ var Essential_Audio = (() => {
       if (vm == 0) {
         T(currentAudio);
       } else {
-        currentAudio.zf = currentAudio.za.offsetLeft;
+        currentAudio.zf = currentAudio.playhead.offsetLeft;
       }
       if (!currentAudio.zk) {
         lastAudio = currentAudio;
@@ -603,7 +606,7 @@ var Essential_Audio = (() => {
       audio.currentTime = 0;
     }
     audio.zf = 0;
-    audio.za.style.left = 0 + "px";
+    audio.playhead.style.left = 0 + "px";
   }
   function reset(vo) {
     if (!vo) {
@@ -631,7 +634,7 @@ var Essential_Audio = (() => {
         }
       }
       audio.zg = Math.round((vi / duration(audio)) * 100);
-      audio.za.parentNode.parentNode
+      audio.playhead.parentNode.parentNode
         .querySelector("div:nth-child(2)")
         .querySelector("div").style.width = audio.zg + "%";
       if (audio.zg == 100) {
@@ -653,14 +656,14 @@ var Essential_Audio = (() => {
       if (audio.zo) {
         clearInterval(audio.playAnimationInterval);
       }
-      audio.zb = audio.za.offsetWidth;
+      audio.zb = audio.playhead.offsetWidth;
       var vl = vo.querySelector("div:nth-child(1)").offsetWidth - audio.zb;
       if (vl < 0) {
         vl = 0;
       }
-      if (audio.za.offsetLeft > 0 && vk != currentAudio.id) {
-        audio.zf = Math.round((audio.za.offsetLeft / audio.zd) * vl);
-        audio.za.style.left = audio.zf + "px";
+      if (audio.playhead.offsetLeft > 0 && vk != currentAudio.id) {
+        audio.zf = Math.round((audio.playhead.offsetLeft / audio.zd) * vl);
+        audio.playhead.style.left = audio.zf + "px";
       }
       audio.zd = vl;
       if (duration(audio) && !audio.zl) {
