@@ -104,13 +104,13 @@ var Essential_Audio = (() => {
           audio.autoplay = true;
           audio.preload = "auto";
           currentAudio = audio;
-          E(audio);
+          initAudioElement(audio);
         }
       }
       if (rootDiv.hasAttribute("data-preload")) {
         if (!audio.autoplay) {
           audio.preload = "auto";
-          E(audio);
+          initAudioElement(audio);
         }
       }
       audio.playhead.onmousedown = (e) => {
@@ -372,7 +372,7 @@ var Essential_Audio = (() => {
       O(audio);
     } else {
       if (!audio.zh) {
-        E(audio);
+        initAudioElement(audio);
       }
     }
   }
@@ -380,7 +380,7 @@ var Essential_Audio = (() => {
     audio.playhead.setAttribute("class", "");
     audio.playhead.classList.add(vn);
   }
-  function E(audio) {
+  function initAudioElement(audio) {
     applyClassToPlayhead(audio, "load");
     audio.zh = true;
     audio.zk = true;
@@ -452,10 +452,14 @@ var Essential_Audio = (() => {
       handleLoadFailed(audio);
     }
   }
-  function appendSource(audio, file_url, vc) {
-    var vd = audio.id + "_" + vc;
+  function appendSource(audio, file_url, sourceIndex) {
+    var sourceId = audio.id + "_" + sourceIndex;
     audio.innerHTML +=
-      '<source id="' + vd + '" src="' + file_url + '" crossorigin="anonymous">';
+      '<source id="' +
+      sourceId +
+      '" src="' +
+      file_url +
+      '" crossorigin="anonymous">';
   }
   function handleLoadFailed(audio) {
     audio.zh = false;
